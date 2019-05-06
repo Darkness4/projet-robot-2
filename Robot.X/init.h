@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   init.h
  * Author: nguye
  *
@@ -6,9 +6,8 @@
  */
 
 #ifndef INIT_H
-#define	INIT_H
+#define INIT_H
 
 void init(void);
 
-#endif	/* INIT_H */
-
+#endif /* INIT_H */

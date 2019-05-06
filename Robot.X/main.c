@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.c
  * Author: nguye
  *
@@ -9,9 +9,6 @@
 #include "init.h"
 
 /*
- * 
+ *
  */
-void main(void) {
-    init();
-}
-
+void main(void) { init(); }

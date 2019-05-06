@@ -27,3 +27,5 @@ funclist
 nbproject/Makefile-*
 disassembly/
 *.map
+*.workspace
+~*

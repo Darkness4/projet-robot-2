@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   loop.h
  * Author: nguye
  *
@@ -6,9 +6,8 @@
  */
 
 #ifndef LOOP_H
-#define	LOOP_H
+#define LOOP_H
 
 void loop(void);
 
-#endif	/* LOOP_H */
-
+#endif /* LOOP_H */
