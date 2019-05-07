@@ -10,6 +10,12 @@ void init(void) {
 
   /// LED Vie: Output pour indiquer l'etat de la batterie
   TRISBbits.RB5 = 0;
+  /// Télécommande: Input
+  TRISBbits.RB0 = 1;
+  /// Télécommande: Clear Interrupt Flag
+  INTCONbits.INT0IF = 0;
+  /// Télécommande: Interrupt Enable
+  INTCONbits.INT0IE = 1;
 
   /** TIMER0
    *

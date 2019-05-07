@@ -7,8 +7,14 @@
 
 #include <p18f2520.h>
 #include "init.h"
+#include "configuration_bits.h"
+#include "interrupts.h"
+
 
 /*
  *
  */
-void main(void) { init(); }
+void main(void) {
+    init();
+        
+}
