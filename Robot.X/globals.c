@@ -1,3 +1,6 @@
+#include "globals.h"
+
+
 char LED_STATUS = 1;
 char IS_START = 0;
 int VOLTAGE = 0;

@@ -1,6 +1,8 @@
 #include <p18f2520.h>
 #include "MI2C.h"
 #include "globals.h"
+#include "interrupts.h"
+
 
 void HighISR(void);
 void LowISR(void);
