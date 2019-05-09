@@ -1,6 +1,7 @@
 #include "init.h"
 #include <p18f2520.h>
 #include "MI2C.h"
+#include "globals.h"
 
 void init(void) {
   /// Clock: 8 MHz
@@ -10,7 +11,9 @@ void init(void) {
 
   /// LED Vie: Output pour indiquer l'etat de la batterie
   TRISBbits.RB5 = 0;
-  /// Télécommande: Input
+  PORTBbits.RB5 = LED_STATUS;
+
+  /// T�l�commande: Input
   TRISBbits.RB0 = 1;
   /// Télécommande: Clear Interrupt Flag
   INTCONbits.INT0IF = 0;

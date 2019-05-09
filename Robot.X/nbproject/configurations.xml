@@ -8,7 +8,7 @@
       <itemPath>init.h</itemPath>
       <itemPath>MI2C.h</itemPath>
       <itemPath>interrupts.h</itemPath>
-      <itemPath>configuration_bits.h</itemPath>
+      <itemPath>globals.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,11 +19,14 @@
                    projectFiles="true">
       <itemPath>configuration_bits.c</itemPath>
       <itemPath>init.c</itemPath>
+      <itemPath>interrupts.c</itemPath>
+      <itemPath>loop.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>MI2C.c</itemPath>
       <itemPath>loop.c</itemPath>
       <itemPath>interrupts.c</itemPath>
       <itemPath>moteur.c</itemPath>
+      <itemPath>globals.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -33,7 +36,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>C:\Program Files (x86)\Microchip\mplabc18\v3.47\h</Elem>
-    <Elem>.</Elem>
+    <Elem>D:\nguye\Desktop\Projets\C\Robot\Robot.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

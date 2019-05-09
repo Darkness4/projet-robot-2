@@ -16,5 +16,5 @@
  */
 void main(void) {
     init();
-        
+    loop();
 }
