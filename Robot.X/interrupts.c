@@ -24,7 +24,7 @@ void IntLowVector(void)
 void HighISR(void) {
     char message[32];
     int i;
-        if(INTCONbits.INT0IF){
+    if(INTCONbits.INT0IF){
         INTCONbits.INT0IF = 0;
         Lire_i2c_Telecom(0xA2, message);
         for(i=0; i<32; i++) {

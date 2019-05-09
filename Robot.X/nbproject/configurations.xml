@@ -23,6 +23,7 @@
       <itemPath>MI2C.c</itemPath>
       <itemPath>loop.c</itemPath>
       <itemPath>interrupts.c</itemPath>
+      <itemPath>moteur.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
