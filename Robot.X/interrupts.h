@@ -1,6 +1,6 @@
 /*
  * File:   interrupts.h
- * Author: Jonas Lef�vre-Daumal
+ * Author: Jonas Lefevre-Daumal
  *
  * Created on 7 mai 2019, 14:14
  */

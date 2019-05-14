@@ -8,14 +8,15 @@
 #pragma config OSC = INTIO67
 #pragma config PBADEN = OFF, WDT = OFF, LVP = OFF, DEBUG = ON
 
-#include <p18f2520.h>
 #include "init.h"
 #include "interrupts.h"
+#include <p18f2520.h>
 
 /*
  *
  */
 void main(void) {
-  init();
-  loop();
+    init();
+    while (1) // Boucle de sureté
+        loop();
 }

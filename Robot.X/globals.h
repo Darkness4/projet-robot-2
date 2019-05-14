@@ -8,17 +8,17 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-extern char LED_STATUS;
-extern char IS_START;
-extern unsigned char VOLTAGE;
+extern volatile char LED_STATUS;
+extern volatile char IS_START;
+extern volatile unsigned char VOLTAGE;
 extern const unsigned char U_BAT_MIN;
-extern int CCPR_CALC;
-extern char DECELERER;
-extern char TEXTE_UART[];
-extern int POS_UART;
-extern int DISTANCE_OBJET;
-extern char IS_START_OLD;
-extern unsigned char VOLTAGE_OLD;
-extern int CCPR_CALC_OLD;
+extern volatile int CCPR_CALC;
+extern volatile char DECELERER;
+extern volatile char TEXTE_UART[];
+extern volatile int POS_UART;
+extern volatile int DISTANCE_OBJET;
+extern volatile char IS_START_OLD;
+extern volatile unsigned char VOLTAGE_OLD;
+extern volatile int CCPR_CALC_OLD;
 
 #endif /* GLOBALS_H */
