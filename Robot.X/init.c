@@ -8,16 +8,17 @@ void init(void) {
   OSCCONbits.IRCF = 0b111;
 
   /// Eteindre les capteurs IR
+  // Todo
 
   /// LED Vie: Output pour indiquer l'etat de la batterie
   TRISBbits.RB5 = 0;
   PORTBbits.RB5 = LED_STATUS;
 
-  /// T�l�commande: Input
+  /// Telecommande: Input
   TRISBbits.RB0 = 1;
-  /// Télécommande: Clear Interrupt Flag
+  /// Telecommande: Clear Interrupt Flag
   INTCONbits.INT0IF = 0;
-  /// Télécommande: Interrupt Enable
+  /// Telecommande: Interrupt Enable
   INTCONbits.INT0IE = 1;
   /// Direction droite
   PORTAbits.RA6 = 1;
@@ -148,4 +149,7 @@ void init(void) {
   INTCONbits.GIEH = 1;
   /// Global Interrupt: Enable Low
   INTCONbits.GIEL = 1;
+
+  // Armer le sonar
+  SONAR_Write(0xE0, 0x51);
 }

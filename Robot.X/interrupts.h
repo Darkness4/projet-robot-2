@@ -1,6 +1,6 @@
-/* 
+/*
  * File:   interrupts.h
- * Author: Jonas Lefèvre-Daumal
+ * Author: Jonas Lefï¿½vre-Daumal
  *
  * Created on 7 mai 2019, 14:14
  */
@@ -9,4 +9,3 @@
 #define INTERRUPTS_H
 
 #endif /* INTERRUPTS_H */
-

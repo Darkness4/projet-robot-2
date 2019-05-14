@@ -1,6 +1,4 @@
-#include <p18f2520.h>
 #include "loop.h"
+#include <p18f2520.h>
 
-void loop(void) {
-    int i;
-}
+void loop(void) { int i; }
