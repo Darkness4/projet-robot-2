@@ -30,7 +30,7 @@ void CommandeMoteur(int percent, char moteur) {
 void Tourner(int percent, char direction) {
     DECELERER = 1;
 
-    // Faire accélérer
+    while(!(CCPR_CALC <= 0));
 
     if (direction == 'd') {
         PORTAbits.RA6 = 1;
@@ -48,8 +48,7 @@ void Tourner(int percent, char direction) {
 void Avancer(int percent) {
     DECELERER = 1;
 
-    // Wait CCPR
-    // Faire accélérer
+    while(!(CCPR_CALC <= 0));
 
     PORTAbits.RA6 = 0;
     PORTAbits.RA7 = 0;
