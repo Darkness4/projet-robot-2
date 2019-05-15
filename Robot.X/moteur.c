@@ -30,14 +30,29 @@ void CommandeMoteur(int percent, char moteur) {
 void Tourner(int percent, char direction) {
     DECELERER = 1;
 
+    // Faire accélérer
+
     if (direction == 'd') {
         PORTAbits.RA6 = 1;
         PORTAbits.RA7 = 0;
     }
-    if (direction == 'd') {
+    if (direction == 'g') {
         PORTAbits.RA6 = 0;
         PORTAbits.RA7 = 1;
     }
+
+    CommandeMoteur(percent, 'd');
+    CommandeMoteur(percent, 'g');
+}
+
+void Avancer(int percent) {
+    DECELERER = 1;
+
+    // Wait CCPR
+    // Faire accélérer
+
+    PORTAbits.RA6 = 0;
+    PORTAbits.RA7 = 0;
 
     CommandeMoteur(percent, 'd');
     CommandeMoteur(percent, 'g');

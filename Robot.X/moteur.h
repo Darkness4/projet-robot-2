@@ -3,5 +3,6 @@
 
 void CommandeMoteur(int percent, char moteur);
 void Tourner(int percent, char direction);
+void Avancer(int percent);
 
 #endif
