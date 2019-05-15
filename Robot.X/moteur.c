@@ -33,8 +33,8 @@ void Tourner(int percent, char direction) {
     while(!(CCPR_CALC <= 0));
 
     if (direction == 'd') {
-        PORTAbits.RA6 = 1;
-        PORTAbits.RA7 = 0;
+        PORTAbits.RA6 = 1;  // DIRD
+        PORTAbits.RA7 = 0;  // DIRG
     }
     if (direction == 'g') {
         PORTAbits.RA6 = 0;
@@ -55,4 +55,24 @@ void Avancer(int percent) {
 
     CommandeMoteur(percent, 'd');
     CommandeMoteur(percent, 'g');
+}
+
+void Calibration() {
+    int mesure = DISTANCE_OBJET;
+    int percent = CCPR_CALC/10;
+    while (percent < 6) {
+        if (DISTANCE_OBJET > mesure) {
+            if (PORTAbits.RA6 == 1) { //si il tourne à droite
+                percent-=5;
+                Tourner(percent, 'd');
+            }
+            if (PORTAbits.RA7 == 1) { //si il tourne à gauche
+                percent-=5;
+                Tourner(percent, 'd');
+            }
+        }
+        else {
+            mesure = DISTANCE_OBJET;
+        }
+    }
 }

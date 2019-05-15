@@ -11,6 +11,7 @@
 #include "init.h"
 #include "interrupts.h"
 #include <p18f2520.h>
+#include "loop.h"
 
 /*
  *
