@@ -20,5 +20,6 @@ extern volatile int DISTANCE_OBJET;
 extern volatile char IS_START_OLD;
 extern volatile unsigned char VOLTAGE_OLD;
 extern volatile int CCPR_CALC_OLD;
+extern volatile int DISTANCE_OBJET_OLD;
 
 #endif /* GLOBALS_H */

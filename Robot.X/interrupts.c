@@ -18,7 +18,7 @@ void IntLowVector(void) { _asm goto LowISR _endasm }
 #pragma interrupt HighISR
 void HighISR(void) {
     char message[32]; // Telecommande
-    char buffer[4];   // UART
+    char buffer[5];   // UART
     int i;
     if (INTCONbits.INT0IF) {
         INTCONbits.INT0IF = 0;
@@ -67,27 +67,34 @@ void HighISR(void) {
 
         // Check if new state
         if (IS_START_OLD != IS_START || VOLTAGE_OLD != VOLTAGE ||
-            CCPR_CALC_OLD != CCPR_CALC) {
+            CCPR_CALC_OLD != CCPR_CALC || DISTANCE_OBJET != DISTANCE_OBJET_OLD) {
             // New State
             IS_START_OLD = IS_START;
             VOLTAGE_OLD = VOLTAGE;
             CCPR_CALC_OLD = CCPR_CALC;
+            DISTANCE_OBJET_OLD = DISTANCE_OBJET;
             POS_UART = 0;
 
             // Convert IS_START to char
             TEXTE_UART[6] = IS_START ? '1' : '0';
+            
+            // Convert DISTANCE_OBJET to chars
+            itoa(DISTANCE_OBJET, buffer);
+            for (i = 0; i < 5; i++)
+                if (buffer[i] != '\0')
+                    TEXTE_UART[38 + i] = buffer[i];
+
+             // Convert CCPR_CALC to chars
+            itoa(CCPR_CALC, buffer); // Max = 1024 (theorical)
+            for (i = 0; i < 4; i++)
+                if (buffer[i] != '\0')
+                    TEXTE_UART[26 + i] = buffer[i];
 
             // Convert VOLTAGE to chars
             itoa(VOLTAGE, buffer); // Max = 256
             for (i = 0; i < 3; i++)
                 if (buffer[i] != '\0')
                     TEXTE_UART[15 + i] = buffer[i];
-
-            // Convert CCPR_CALC to chars
-            itoa(CCPR_CALC, buffer); // Max = 1024 (theorical)
-            for (i = 0; i < 4; i++)
-                if (buffer[i] != '\0')
-                    TEXTE_UART[26 + i] = buffer[i];
 
             // Send
             PIE1bits.TXIE = 1;
@@ -99,6 +106,10 @@ void HighISR(void) {
             POS_UART++;
         } else
             PIE1bits.TXIE = 0;
+    }
+    if (PIR1bits.ADIF) {
+        PIR1bits.ADIF = 0;
+        VOLTAGE = ADRESH;
     }
 }
 

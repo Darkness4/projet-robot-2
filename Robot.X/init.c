@@ -15,6 +15,9 @@ void init(void) {
     TRISBbits.RB5 = 0;
     PORTBbits.RB5 = LED_STATUS;
 
+    /// Baterie: Input
+    TRISAbits.RA2 = 1;
+
     /// Telecommande: Input
     TRISBbits.RB0 = 1;
     /// Telecommande: Clear Interrupt Flag
@@ -74,7 +77,7 @@ void init(void) {
     /// ADC: Enable
     ADCON0bits.ADON = 1;
     /// ADC: Interrupt low priority
-    IPR1bits.ADIP = 1;
+    IPR1bits.ADIP = 0;
     /// ADC: Clear Interrupt Flag
     PIR1bits.ADIF = 0;
     /// ADC: Interrupt Enable
@@ -146,10 +149,13 @@ void init(void) {
     /*Interrupts*/
     /// Priority Mode: Low et High
     RCONbits.IPEN = 1;
+    /// Priority Mode: Enable all low interrupts
+    INTCONbits.PEIE = 1;
     /// Global Interrupt: Enable High
     INTCONbits.GIEH = 1;
     /// Global Interrupt: Enable Low
     INTCONbits.GIEL = 1;
+    
 
     // Armer le sonar
     SONAR_Write(0xE0, 0x51);
