@@ -27,7 +27,7 @@ void CommandeMoteur(int percent) {
 }
 
 void Tourner(int percent, char direction) {
-    // Decelerer();  // TODO: Checker si le systeme crash
+    // Decelerer();  // TODO: Checker si le systeme "se suspend" sur le réel
 
     if (direction == 'd') {
         PORTAbits.RA6 = 1; // DIRD
