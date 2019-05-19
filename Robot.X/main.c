@@ -10,14 +10,14 @@
 
 #include "init.h"
 #include "interrupts.h"
-#include <p18f2520.h>
 #include "loop.h"
+#include <p18f2520.h>
 
 /*
  *
  */
 void main(void) {
     init();
-    while (1) // Boucle de sureté
-        loop();
+    loop();
+    while(1);  // Boucle de secours
 }

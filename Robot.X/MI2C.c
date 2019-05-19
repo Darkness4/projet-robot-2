@@ -34,22 +34,22 @@ void MI2CInit(void) {
 
 char Detecte_i2c(char adresse_i2c) {
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.SEN = 1; // initiate START condition
     while (SSPCON2bits.SEN)
-        ; // Attente fin start condition
+        continue; // Attente fin start condition
 
     SSPBUF = adresse_i2c; // Envoi adresse
     while (SSPSTATbits.BF)
-        ; // Attente buffer TX vide
+        continue; // Attente buffer TX vide
     while (SSPCON2bits.ACKSTAT)
-        ; // Attente ACK slave
+        continue; // Attente ACK slave
 
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.PEN = 1; // send STOP condition
     while (SSPCON2bits.PEN)
-        ; // attente fin stop condition
+        continue; // attente fin stop condition
 
     PIR1bits.SSPIF = 0; // Remise a jour du flag pour IT Stop
     return 0;           // return with contents of SSPBUF
@@ -141,10 +141,10 @@ void SONAR_Write(char adresse_i2c, char commande) {
 char Ecrire_i2c_Telecom(char adresse_i2c, char *Send_Buff) {
     char index = 0;
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.SEN = 1; // initiate START condition
     while (SSPCON2bits.SEN)
-        ; // Attente fin start condition
+        continue; // Attente fin start condition
 
     SSPBUF = adresse_i2c; // Envoi adresse
     while (SSPSTATbits.BF)
@@ -154,19 +154,19 @@ char Ecrire_i2c_Telecom(char adresse_i2c, char *Send_Buff) {
 
     do {
         while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-            ;                      // ensure module is idle
+            continue;                      // ensure module is idle
         SSPBUF = Send_Buff[index]; // Ecrit octet
         while (SSPSTATbits.BF)
-            ; // Attente buffer TX vide
+            continue; // Attente buffer TX vide
         while (SSPCON2bits.ACKSTAT)
-            ; // Attente ACK slave
+            continue; // Attente ACK slave
     } while (Send_Buff[index++]);
 
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.PEN = 1; // send STOP condition
     while (SSPCON2bits.PEN)
-        ; // attente fin stop condition
+        continue; // attente fin stop condition
 
     PIR1bits.SSPIF = 0; // Remise a jour du flag pour IT Stop
     return (0);         // return with contents of SSPBUF
@@ -182,24 +182,24 @@ char Ecrire_i2c_Telecom(char adresse_i2c, char *Send_Buff) {
 char Lire_i2c_Telecom(char adresse_i2c, char *Recv_Buff) {
     char index = 0;
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.SEN = 1; // initiate START condition
     while (SSPCON2bits.SEN)
-        ; // Attente fin start condition
+        continue; // Attente fin start condition
 
     SSPBUF = adresse_i2c + 1; // Envoi adresse
     while (SSPSTATbits.BF)
-        ; // Attente buffer TX vide
+        continue; // Attente buffer TX vide
     while (SSPCON2bits.ACKSTAT)
-        ; // Attente ACK slave
+        continue; // Attente ACK slave
 
     do {
         while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-            ; // ensure module is idle
+            continue; // ensure module is idle
 
         SSPCON2bits.RCEN = 1; // SSPBUF en reception
         while (!SSPSTATbits.BF)
-            ;                      // Attente buffer RX plein
+            continue;                      // Attente buffer RX plein
         Recv_Buff[index] = SSPBUF; // Ecrit octet
         if (SSPBUF)
             SSPCON2bits.ACKDT = 0; // initiate ACK
@@ -211,10 +211,10 @@ char Lire_i2c_Telecom(char adresse_i2c, char *Recv_Buff) {
     } while (Recv_Buff[index++]); // Tant que not \'0'
 
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.PEN = 1; // send STOP condition
     while (SSPCON2bits.PEN)
-        ; // attente fin stop condition
+        continue; // attente fin stop condition
 
     PIR1bits.SSPIF = 0; // Remise a jour du flag pour IT Stop
     return (0);         // return with contents of SSPBUF
@@ -231,30 +231,30 @@ char Lire_i2c_Telecom(char adresse_i2c, char *Recv_Buff) {
 char Write_PCF8574(char adresse_i2c, char data) {
     char error = 0;
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;                // ensure module is idle
+        continue;                // ensure module is idle
     SSPCON2bits.SEN = 1; // initiate START condition
     while (SSPCON2bits.SEN)
-        ;                 // Attente fin start condition
+        continue;                 // Attente fin start condition
     SSPBUF = adresse_i2c; // Write adresse mode Ecriture un octet
     while (SSPSTATbits.BF)
-        ; // Attente buffer TX vide
+        continue; // Attente buffer TX vide
     while (SSPCON2bits.ACKSTAT)
-        ; // Attente ACK slave
+        continue; // Attente ACK slave
 
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ;          // ensure module is idle
+        continue;          // ensure module is idle
     SSPBUF = data; // Ecrit data pour transmission
     while (SSPSTATbits.BF)
-        ; // Attente buffer TX vide
+        continue; // Attente buffer TX vide
     while (SSPCON2bits.ACKSTAT)
-        ; // Attente ACK slave
+        continue; // Attente ACK slave
 
     while ((SSPCON2 & 0x1F) || (SSPSTATbits.R_W))
-        ; // ensure module is idle
+        continue; // ensure module is idle
 
     SSPCON2bits.PEN = 1; // send STOP condition
     while (SSPCON2bits.PEN)
-        ;               // attente fin stop condition
+        continue;               // attente fin stop condition
     PIR1bits.SSPIF = 0; // Remise a jour du flag pour IT Stop
     return (error);     // return with  error
 }

@@ -13,10 +13,18 @@ void init(void) {
 
     /// LED Vie: Output pour indiquer l'etat de la batterie
     TRISBbits.RB5 = 0;
-    PORTBbits.RB5 = LED_STATUS;
 
     /// Baterie: Input
     TRISAbits.RA2 = 1;
+    
+    /// Moteur: PWM: Droite Output
+    TRISCbits.RC1 = 0;
+    /// Moteur: PWM: Gauche Output
+    TRISCbits.RC2 = 0;
+    /// Moteur: Direction droite: Output
+    TRISAbits.RA6 = 0;
+    /// Moteur: Direction gauche: Output
+    TRISAbits.RA7 = 0;
 
     /// Telecommande: Input
     TRISBbits.RB0 = 1;
@@ -24,10 +32,6 @@ void init(void) {
     INTCONbits.INT0IF = 0;
     /// Telecommande: Interrupt Enable
     INTCONbits.INT0IE = 1;
-    /// Direction droite
-    PORTAbits.RA6 = 1;
-    /// Direction gauche
-    PORTAbits.RA7 = 1;
 
     /** TIMER0
      *
@@ -135,9 +139,9 @@ void init(void) {
     CCP1CONbits.DC1B = 0;
     CCP2CONbits.DC2B = 0;
     /// TMR2: PWM mode, P1A, P1C active-low; P1B, P1D active-low
-    CCP2CONbits.CCP2M = 0xf;
+    CCP2CONbits.CCP2M = 0b1100;
     /// TMR2: PWM mode, P1A, P1C active-low; P1B, P1D active-low
-    CCP1CONbits.CCP1M = 0xf;
+    CCP1CONbits.CCP1M = 0b1100;
 
     /// TMR2: Enable
     T2CONbits.TMR2ON = 1;
@@ -148,15 +152,13 @@ void init(void) {
 
     /*Interrupts*/
     /// Priority Mode: Low et High
-    RCONbits.IPEN = 1;
-    /// Priority Mode: Enable all low interrupts
+    RCONbits.IPEN = 0;
+    /// Priority Mode: Enable peripheral interrupt
     INTCONbits.PEIE = 1;
-    /// Global Interrupt: Enable High
-    INTCONbits.GIEH = 1;
-    /// Global Interrupt: Enable Low
-    INTCONbits.GIEL = 1;
+    /// Global Interrupt: Enable
+    INTCONbits.GIE = 1;
     
 
     // Armer le sonar
-    SONAR_Write(0xE0, 0x51);
+    // SONAR_Write(0xE0, 0x00);  // TODO: Ignore for simulation
 }
