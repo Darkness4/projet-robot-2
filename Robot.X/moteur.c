@@ -5,7 +5,6 @@
 
 void CommandeMoteur(int percent) {
     int ccpr_calc;
-
     // Protection moteur
     if (percent > 50)
         percent = 50;
@@ -46,21 +45,19 @@ void Avancer(int percent) {
     PORTAbits.RA6 = 0;
     PORTAbits.RA7 = 0;
 
-    PERCENT = percent;
-
     CommandeMoteur(percent);
 }
 
 void Calibration(void) {
     int mesure = DISTANCE_OBJET;
-    while (PERCENT < 6) {
-        if (DISTANCE_OBJET > mesure) {
-            if (PORTAbits.RA6 == 1) { // si il tourne a droite
-                PERCENT -= 5;
+    while (PERCENT > 1) {
+        if (DISTANCE_OBJET > mesure + 10) {
+            if (PORTAbits.RA6 == 1 && PORTAbits.RA7 == 0) { // si il tourne a droite
+                PERCENT -= 3;
                 Tourner(PERCENT, 'g');
             }
-            if (PORTAbits.RA7 == 1) { // si il tourne a gauche
-                PERCENT -= 5;
+            if (PORTAbits.RA7 == 1 && PORTAbits.RA6 == 0) { // si il tourne a gauche
+                PERCENT -= 3;
                 Tourner(PERCENT, 'd');
             }
         } else {
@@ -70,6 +67,6 @@ void Calibration(void) {
 }
 
 void Decelerer(void) {
-    if(PERCENT > 0) DECELERER = 1;
-    while (PERCENT > 0);
+    /*if(PERCENT > 0) DECELERER = 1;
+    while (PERCENT > 0);*/
 }

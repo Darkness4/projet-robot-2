@@ -5,7 +5,7 @@
 volatile char IS_START = 0;
 
 /// Voltage
-volatile unsigned char VOLTAGE = 0;
+volatile unsigned char VOLTAGE = 255;
 volatile unsigned char VOLTAGE_COUNT = 0;
 volatile unsigned int VOLTAGE_TMP = 0;
 

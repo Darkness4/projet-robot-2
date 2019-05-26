@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 void HighISR(void);
+void LowISR(void);
 void decelererInterrupt(void);
 void Traduire_i2c_Telecom(char * message);
 void setState(void);
@@ -18,6 +19,24 @@ void IntHighVector(void) { _asm goto HighISR _endasm }
 #pragma interrupt HighISR
 void HighISR(void) {
     char message[32];
+    if (PIR1bits.TXIF) {
+        PIR1bits.TXIF = 0;
+        if (TEXTE_UART[POS_UART] != '\0') {
+            TXREG = TEXTE_UART[POS_UART];
+            POS_UART++;
+        } else
+            PIE1bits.TXIE = 0;
+    }
+    if (PIR1bits.ADIF) {
+        PIR1bits.ADIF = 0;
+        VOLTAGE_TMP += ADRESH;
+        VOLTAGE_COUNT++;
+        if (VOLTAGE_COUNT == 8) {  // Moyenne de 8 mesures
+            VOLTAGE = (char)(VOLTAGE_TMP/VOLTAGE_COUNT);
+            VOLTAGE_COUNT = 0;
+            VOLTAGE_TMP = 0;
+        }
+    }
     if (INTCONbits.INT0IF) {
         INTCONbits.INT0IF = 0;
 
@@ -31,11 +50,16 @@ void HighISR(void) {
         ADCON0bits.GO = 1; // ADC Start
 
         COUNT_100MS++; // Augmente le compteur
+        // Si nouvel etat
+        if (IS_START_OLD != IS_START || VOLTAGE_OLD != VOLTAGE ||
+            PERCENT_OLD != PERCENT || DISTANCE_OBJET != DISTANCE_OBJET_OLD) {
+            setState();
+        }
 
         // Lire la valeur du sonar
         DISTANCE_OBJET = SONAR_Read(0xE0, 0x02);
         // Armer le sonar
-        // SONAR_Write(0xE0, 0x56); // TODO: Ignore for simulation
+        SONAR_Write(0xE0, 0x51); // TODO: Ignore for simulation
 
         // Si tension batterie, faire clignoter
         if (VOLTAGE < U_BAT_MIN) {
@@ -44,31 +68,7 @@ void HighISR(void) {
             PORTBbits.RB5 = 1;
         }
 
-        decelererInterrupt();
-
-        // Si nouvel etat
-        if (IS_START_OLD != IS_START || VOLTAGE_OLD != VOLTAGE ||
-            PERCENT_OLD != PERCENT || DISTANCE_OBJET != DISTANCE_OBJET_OLD) {
-            setState();
-        }
-    } 
-    if (PIR1bits.TXIF) {
-        PIR1bits.TXIF = 0;
-        if (TEXTE_UART[POS_UART] != '\0') {
-            TXREG = TEXTE_UART[POS_UART];
-            POS_UART++;
-        } else
-            PIE1bits.TXIE = 0;
-    } 
-    if (PIR1bits.ADIF) {
-        PIR1bits.ADIF = 0;
-        VOLTAGE_TMP += ADRESH;
-        VOLTAGE_COUNT++;
-        if (VOLTAGE_COUNT == 8) {  // Moyenne de 8 mesures
-            VOLTAGE = (char)(VOLTAGE_TMP/VOLTAGE_COUNT);
-            VOLTAGE_COUNT = 0;
-            VOLTAGE_TMP = 0;
-        }
+        // decelererInterrupt();
     }
 }
 
@@ -160,6 +160,6 @@ void Traduire_i2c_Telecom(char * message) {
         if (message[i] == '\0')
             break; // End of String
         if (message[i] == 0x33)
-            IS_START = !IS_START; // Code Middle Button
+            IS_START = 1; // Code Middle Button
     }
 }

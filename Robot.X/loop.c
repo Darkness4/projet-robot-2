@@ -6,26 +6,24 @@
 void loop(void) {
     int distance_objet_initial;
     // Mettre des tests ici
-    // Tourner(50, 'd');
+    // Tourner(10, 'd');
     // Tourner(25, 'g');
-    Avancer(10);
+    // Decelerer();
+    while (!IS_START);
 
-    while(!IS_START);
-
-    while(IS_START) {
-        if (DISTANCE_OBJET < 300 &&
-            DISTANCE_OBJET > 100) { // TODO: Define 1m and 1m50
+    Avancer(50);
+    /*while(IS_START) {
+        if (DISTANCE_OBJET < 153 &&
+            DISTANCE_OBJET > 102) { // TODO: Define 1m and 1m50
             distance_objet_initial = DISTANCE_OBJET;
             Calibration();
-            if (distance_objet_initial - DISTANCE_OBJET > 100) { // TODO: Define 1m
-                Decelerer();
-                IS_START = 0;
-            } else {
+            while (distance_objet_initial - DISTANCE_OBJET < 102) { // TODO: Define 1m
                 Avancer(50);  // TODO: Define 30cm/s
             }
-        } else {
-            Tourner(30, 'd'); // TODO: Calibrer l'angle de rotation.
             Decelerer();
+            IS_START = 0;
+        } else {
+            Tourner(20, 'd'); // TODO: Calibrer l'angle de rotation.
         }
-    }
+    }*/
 }

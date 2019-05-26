@@ -3,7 +3,7 @@
 #include "globals.h"
 #include <p18f2520.h>
 
-void init(void) {
+int init(void) {
     /// Clock: 8 MHz
     OSCCONbits.IRCF = 0b111;
 
@@ -47,7 +47,7 @@ void init(void) {
     /// TMR0: Mode 16 bits
     T0CONbits.T08BIT = 0;
     /// TMR0: Prescale 1:4
-    T0CONbits.T0PS = 0b001;
+    T0CONbits.T0PS = 0b000;
 
     /// TMR0: Offset 0x3CB0
     TMR0H = 0x3C, TMR0L = 0xB0;
@@ -59,6 +59,8 @@ void init(void) {
 
     /// TMR0: Enable
     T0CONbits.TMR0ON = 1;
+    /// TMR0: High Priority
+    INTCON2bits.TMR0IP = 1;
     /// TMR0: Clear Interrupt Flag
     INTCONbits.TMR0IF = 0;
     /// TMR0: Interrupt Enable
@@ -81,7 +83,7 @@ void init(void) {
     /// ADC: Enable
     ADCON0bits.ADON = 1;
     /// ADC: Interrupt low priority
-    IPR1bits.ADIP = 0;
+    IPR1bits.ADIP = 1;
     /// ADC: Clear Interrupt Flag
     PIR1bits.ADIF = 0;
     /// ADC: Interrupt Enable
@@ -89,6 +91,8 @@ void init(void) {
 
     /*I2C Init*/
     MI2CInit();
+    // Armer le sonar
+    SONAR_Write(0xE0, 0x51);  // TODO: Ignore for simulation
 
     /*UART Init*/
     /// Serial: TX (voir doc)
@@ -145,20 +149,13 @@ void init(void) {
 
     /// TMR2: Enable
     T2CONbits.TMR2ON = 1;
-    /// TMR2: Clear Interrupt Flag
-    PIR1bits.TMR2IF = 0;
-    /// TMR2: Interrupt Enable
-    PIE1bits.TMR2IE = 1;
 
     /*Interrupts*/
+    /// Global Low Interrupt: Enable
+    INTCONbits.GIEL = 1;
+    /// Global High Interrupt: Enable
+    INTCONbits.GIEH = 1;
     /// Priority Mode: Low et High
     RCONbits.IPEN = 0;
-    /// Priority Mode: Enable peripheral interrupt
-    INTCONbits.PEIE = 1;
-    /// Global Interrupt: Enable
-    INTCONbits.GIE = 1;
-    
-
-    // Armer le sonar
-    // SONAR_Write(0xE0, 0x00);  // TODO: Ignore for simulation
+    return 0;
 }
