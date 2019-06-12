@@ -1,12 +1,13 @@
 #include "loop.h"
+
+#include <p18f2520.h>
+
 #include "globals.h"
 #include "moteur.h"
-#include <p18f2520.h>
 
 
 void loop(void) {
     int distance_objet_initial;
-    // Mettre des tests ici
     while (ETAT != START);
 
     while (ETAT != NOT_START) {

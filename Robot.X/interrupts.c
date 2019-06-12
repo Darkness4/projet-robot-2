@@ -1,28 +1,41 @@
-#include "MI2C.h"
-#include "globals.h"
-#include "moteur.h"
 #include <p18f2520.h>
 #include <stdlib.h>
 
+#include "MI2C.h"
+#include "globals.h"
+#include "moteur.h"
+
 void HighISR(void);
 void LowISR(void);
+/// Compare le code de la télécommande et traduit en fonction
 static void Traduire_i2c_Telecom(char * message);
 
 /// Tension sauvegarde
-static volatile char voltage_tab[8];
+static volatile int voltage_tab[] = {255, 255, 255, 255, 255, 255, 255, 255};
+/// Indice de la valeur a stocker dans le tableau voltage_tab
 static volatile unsigned char voltage_count = 0;
 
-static volatile char led_interrupt_not_handled = 0;
+/// Controle des LEDs
+struct
+{
+    /// Led Test Vie
+    unsigned interrupt_not_handled:1;
+    /// PCF8574: Toutes les leds
+    unsigned battery_warning:1;
+} LEDS;
 
-#if DEBUG_PRINT
+#if DEBUG_PRINT || UNIT_TEST_NUMBER==5
+/// Actualise UART
 static void setState(void);
 
 /// Texte à envoyer à l'UART
 static volatile char texte_uart[] =
     " : VB:   .  , %:     , d:      , t:            ,    \r\n";
-
+/// Si UART est libre, has_sent = 1.
 static volatile char has_sent = 1;
+/// Position du charactère dans le String à envoyer
 static volatile int pos_uart = 0;
+
 static volatile char etat_old = -1;
 static volatile unsigned char voltage_old = -1;
 static volatile int percent_old = -1;
@@ -38,16 +51,15 @@ void IntHighVector(void) { _asm goto HighISR _endasm }
 void HighISR(void) {
     char message[32];
     if (INTCONbits.INT0IF) {
-        INTCONbits.INT0IF = 0;
-
         Lire_i2c_Telecom(0xA2, message);
         Traduire_i2c_Telecom(message);
+        INTCONbits.INT0IF = 0;
     } else if (INTCONbits.TMR0IF) {
         INTCONbits.TMR0IF = 0;
         TMR0H = 0x3C, TMR0L = 0xB0; // Remet a l'offset
 
-#if UNIT_TESTS
-        ADCON0bits.GO = 1;
+#if UNIT_TESTS==1
+        ADCON0bits.GO = 1;  // ADC Fast Start
 #else
         if (COUNT_100MS % 50 == 0) ADCON0bits.GO = 1; // ADC Start
 #endif
@@ -59,30 +71,38 @@ void HighISR(void) {
         SONAR_Write(0xE0, 0x51);
 
         // Si tension batterie, faire clignoter
-        if (VOLTAGE < U_BAT_MIN)
-            PORTBbits.RB5 = !PORTBbits.RB5;
-        else if (PORTBbits.RB5 == 0)  // Si la led est eteinte, allumer
+        if (VOLTAGE < U_BAT_MIN) {
+            LEDS.battery_warning = !LEDS.battery_warning;
+            PORTBbits.RB5 = LEDS.battery_warning;
+        } else if (LEDS.battery_warning == 0) { // Si la led est eteinte, allumer
+            LEDS.battery_warning = 1;
             PORTBbits.RB5 = 1;
+        }
 
-#if DEBUG_PRINT
+#if DEBUG_PRINT || UNIT_TEST_NUMBER==5
     // Si nouvel etat
     if (has_sent && (etat_old != ETAT || voltage_old != VOLTAGE ||
         percent_old != PERCENT || distance_objet_old != DISTANCE_OBJET))
         setState();  // Nouveau affichage UART
 #endif
-#if DEBUG_PRINT
+
+#if DEBUG_PRINT || UNIT_TEST_NUMBER==5
     } else if (PIR1bits.TXIF) {
         if (texte_uart[pos_uart] != '\0') {
+            // Envoyer le texte
             TXREG = texte_uart[pos_uart];
             pos_uart++;
         } else {
+            // Desactiver et "liberer" UART
             PIE1bits.TXIE = 0;
             has_sent = 1;
         }
         PIR1bits.TXIF = 0;
 #endif
-    } else  // Interruption non controlé, faire clignoter
-        Write_PCF8574(0x40, !led_interrupt_not_handled);
+    } else { // Interruption non controlé, faire clignoter
+        LEDS.interrupt_not_handled = !LEDS.interrupt_not_handled;
+        Write_PCF8574(0x40, LEDS.interrupt_not_handled);
+    }
 }
 
 /* Low-priority interrupt routine */
@@ -96,26 +116,28 @@ void LowISR(void) {
     int voltage_tmp = 0;
     if (PIR1bits.ADIF) {
         PIR1bits.ADIF = 0;
+        // Enregistre les 8 dernières mesures
         voltage_tab[voltage_count] = ADRESH;
         voltage_count++;
         if (voltage_count > 8) voltage_count = 0;
         for (i = 0; i < 8; i++) voltage_tmp += voltage_tab[i];
         VOLTAGE = voltage_tmp/8;
-    } else  // Interruption non controlé, faire clignoter
-        Write_PCF8574(0x40, !led_interrupt_not_handled);
+    } else { // Interruption non controlé, faire clignoter
+        LEDS.interrupt_not_handled = !LEDS.interrupt_not_handled;
+        Write_PCF8574(0x40, LEDS.interrupt_not_handled);
+    }
 }
 
 
-#if DEBUG_PRINT
-/**
- * Actualise le message UART
- */
+#if DEBUG_PRINT || UNIT_TEST_NUMBER==5
+
+/// Actualise le message UART
 static void setState(void) {
     char buffer[10];   // UART
     int i;
     double voltage_convert;
     int voltage_dec;
-    has_sent = 0;
+    has_sent = 0; // Occupe UART
 
     // New State
     etat_old = ETAT;
@@ -131,7 +153,7 @@ static void setState(void) {
     texte_uart[49] = PORTAbits.RA7 ? 'G' : '_';
     texte_uart[51] = PORTAbits.RA6 ? 'D' : '_';
 
-    for (i = 0; i < 10; i++) buffer[i] = 0;
+    for (i = 0; i < 10; i++) buffer[i] = 0;  // Clean buffer
     // Convert COUNT_MS to chars
     itoa(COUNT_100MS, buffer);
     for (i = 0; i < 10; i++)
@@ -140,7 +162,7 @@ static void setState(void) {
         else
             texte_uart[36 + i] = ' ';
 
-    for (i = 0; i < 10; i++) buffer[i] = 0;
+    for (i = 0; i < 10; i++) buffer[i] = 0;  // Clean buffer
     // Convert DISTANCE_OBJET to chars
     itoa(distance_objet_old, buffer);
     for (i = 0; i < 5; i++)
@@ -149,7 +171,7 @@ static void setState(void) {
         else
             texte_uart[26 + i] = ' ';
 
-    for (i = 0; i < 10; i++) buffer[i] = 0;
+    for (i = 0; i < 10; i++) buffer[i] = 0;  // Clean buffer
     // Convert PERCENT to chars
     itoa(percent_old, buffer); // Max = 50
     for (i = 0; i < 4; i++)
@@ -158,9 +180,9 @@ static void setState(void) {
         else
             texte_uart[17 + i] = ' ';
 
-    for (i = 0; i < 10; i++) buffer[i] = 0;
+    for (i = 0; i < 10; i++) buffer[i] = 0;  // Clean buffer
     // Convert VOLTAGE to chars
-    // Convert to Volt
+    // Convert Digital to Volt
     // 16 V = 5 V = 255
     voltage_convert = (double)voltage_old * 16/255;
 
@@ -191,7 +213,8 @@ static void setState(void) {
 
 
 /**
- * Traite le message
+ * @brief Traite le message
+ * 
  * @param message Message I2C de la telecommande
  */
 static void Traduire_i2c_Telecom(char * message) {
@@ -199,7 +222,8 @@ static void Traduire_i2c_Telecom(char * message) {
     for (i = 0; i < 32; i++) {
         if (message[i] == '\0') // End of String
             break;
-        if (message[i] == 0x33) // Code Middle Button
+        if (message[i] == 0x33) {// Code Middle Button
             ETAT = START;
+        }
     }
 }

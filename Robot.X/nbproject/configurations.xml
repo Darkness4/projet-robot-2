@@ -7,7 +7,6 @@
       <itemPath>loop.h</itemPath>
       <itemPath>init.h</itemPath>
       <itemPath>MI2C.h</itemPath>
-      <itemPath>interrupts.h</itemPath>
       <itemPath>globals.h</itemPath>
       <itemPath>moteur.h</itemPath>
       <itemPath>unit_tests.h</itemPath>

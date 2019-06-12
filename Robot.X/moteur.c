@@ -1,8 +1,10 @@
 #include "moteur.h"
+
+#include <p18f2520.h>
+
 #include "globals.h"
 #include "init.h"
 #include "MI2C.h"
-#include <p18f2520.h>
 
 /// Carte spatiale
 static volatile int DISTANCE_OBJET_TABLE[60];
@@ -23,10 +25,6 @@ void CommandeMoteur(int percent) {
     ccpr_calc = percent * 10; // CCPR = percent*Fosc/(100*Prescaler*f_PWM)
                               // 8e6/(100*4*2000) = 10
 
-    /** Documentation section 15.4.2 :
-     * The CCPRxL contains the eight MSbs and the
-     * CCPxCON<5 : 4> bits contain the two LSbs
-     */
     CCPR1L = ccpr_calc >> 2;              // CCPR low
     CCP1CONbits.DC1B = ccpr_calc & 0b11;  // CCPR last 2 bits
     CCPR2L = ccpr_calc >> 2;              // CCPR low
@@ -60,22 +58,20 @@ void Avancer(int percent) {
 /// Balayer et s'aligner avec la cible
 void Calibration(void) {
     int time = COUNT_100MS;
-    int time2;
-    int mini_temp = 100000;
-    int idx_temp;
+    int mini_temp = 32767;
+    int idx_mini;
     char i = 0;
     char j;
 
     // Balayage
     Tourner(25, 'd');
     while(COUNT_100MS - time < 30) {
-        if (i < 60) {
+        if (i < 60) {  // Protection overflow
             // Cartographier en 1D
             DISTANCE_OBJET_TABLE[i] = DISTANCE_OBJET;
             TIME_OBJET_TABLE[i] = COUNT_100MS - time;
             i++;
-            time2 = COUNT_100MS;
-            
+
             // Afficher la progression d'enregistrement
             Write_PCF8574(0x40, ~i);
         }
@@ -87,15 +83,15 @@ void Calibration(void) {
     for (j = 0; j < i; j++) {
         if (DISTANCE_OBJET_TABLE[j] < mini_temp) {
             mini_temp = DISTANCE_OBJET_TABLE[j];
-            idx_temp = j;
+            idx_mini = j;
         }
     }
     Tourner(25, 'g');
 
     // Afficher le min
-    Write_PCF8574(0x40, ~idx_temp);
+    Write_PCF8574(0x40, ~idx_mini);
 
     // Angle nécéssaire pour s'aligner
-    delay_100ms(TIME_OBJET_TABLE[i - 1] - TIME_OBJET_TABLE[idx_temp]);
+    delay_100ms(TIME_OBJET_TABLE[i - 1] - TIME_OBJET_TABLE[idx_mini]);
     CommandeMoteur(0);
 }

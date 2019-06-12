@@ -1,7 +1,10 @@
 #include "init.h"
+
+#include <p18f2520.h>
+
 #include "MI2C.h"
 #include "globals.h"
-#include <p18f2520.h>
+#include "unit_tests.h"
 
 int init(void) {
 #if DEBUG_PRINT
@@ -101,7 +104,7 @@ int init(void) {
     // Armer le sonar
     SONAR_Write(0xE0, 0x51);
 
-#if DEBUG_PRINT
+#if DEBUG_PRINT || UNIT_TEST_NUMBER
     /*UART Init*/
     // Serial: TX (voir doc)
     TRISCbits.RC6 = 1;
@@ -166,7 +169,7 @@ int init(void) {
     // Priority Mode: Low et High
     RCONbits.IPEN = 1;
 
-#if DEBUG_PRINT
+#if DEBUG_PRINT || UNIT_TEST_NUMBER==5
     while(i < 10) {
         if (PIR1bits.TXIF) {
             PIR1bits.TXIF = 0;

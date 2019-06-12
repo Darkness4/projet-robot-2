@@ -8,7 +8,7 @@
 // La configuration globale est dans globals.h
 
 #pragma config OSC = INTIO67
-#pragma config PBADEN = OFF, WDT = OFF, LVP = OFF, DEBUG = OFF
+#pragma config PBADEN = OFF, WDT = OFF, LVP = OFF, DEBUG = ON
 
 #include <p18f2520.h>
 
@@ -17,6 +17,7 @@
 
 #if UNIT_TESTS
 #include "unit_tests.h"
+#include <stdio.h>
 #else
 #include "loop.h"
 #endif
@@ -26,7 +27,8 @@ void main(void) {
     while (1) {
         ETAT = NOT_START;
 #if UNIT_TESTS
-        unit_tests();
+    if (unit_tests())
+        printf("Erreur, test inconnu! \r\n");
 #else
         loop();
 #endif
