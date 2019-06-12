@@ -10,6 +10,7 @@
       <itemPath>interrupts.h</itemPath>
       <itemPath>globals.h</itemPath>
       <itemPath>moteur.h</itemPath>
+      <itemPath>unit_tests.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,6 +26,7 @@
       <itemPath>MI2C.c</itemPath>
       <itemPath>globals.c</itemPath>
       <itemPath>moteur.c</itemPath>
+      <itemPath>unit_tests.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

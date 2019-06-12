@@ -8,22 +8,17 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-extern volatile char IS_START;
+#define UNIT_TESTS 0
+#define DEBUG_PRINT 1
+#define U_BAT_MIN 160
+
+enum Etat {NOT_START, START, CALIB, RUN};
+
+extern volatile char ETAT;
 extern volatile unsigned char VOLTAGE;
-extern volatile unsigned char VOLTAGE_COUNT;
-extern volatile unsigned int VOLTAGE_TMP;
-extern const unsigned char U_BAT_MIN;
 extern volatile int PERCENT;
-extern volatile char TEXTE_UART[];
-extern volatile int POS_UART;
 extern volatile int DISTANCE_OBJET;
-extern volatile char IS_START_OLD;
-extern volatile unsigned char VOLTAGE_OLD;
-extern volatile int PERCENT_OLD;
-extern volatile int DISTANCE_OBJET_OLD;
 extern volatile long COUNT_100MS;
-extern volatile int DISTANCE_OBJET_TABLE[];
-extern volatile int TIME_OBJET_TABLE[];
 
 
 void delay_100ms(int duration);
