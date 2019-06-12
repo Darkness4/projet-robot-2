@@ -8,7 +8,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#define UNIT_TESTS 0
+#define UNIT_TESTS 1
 #define DEBUG_PRINT 1
 #define U_BAT_MIN 160
 

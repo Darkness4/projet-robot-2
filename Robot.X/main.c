@@ -10,16 +10,16 @@
 #pragma config OSC = INTIO67
 #pragma config PBADEN = OFF, WDT = OFF, LVP = OFF, DEBUG = OFF
 
+#include <p18f2520.h>
+
+#include "globals.h"
+#include "init.h"
+
 #if UNIT_TESTS
 #include "unit_tests.h"
 #else
 #include "loop.h"
 #endif
-
-#include "globals.h"
-#include "init.h"
-
-#include <p18f2520.h>
 
 void main(void) {
     init();

@@ -99,7 +99,7 @@ int init(void) {
     /*I2C Init*/
     MI2CInit();
     // Armer le sonar
-    // SONAR_Write(0xE0, 0x51);  // TODO: Ignore for simulation
+    SONAR_Write(0xE0, 0x51);
 
 #if DEBUG_PRINT
     /*UART Init*/

@@ -46,14 +46,17 @@ void HighISR(void) {
         INTCONbits.TMR0IF = 0;
         TMR0H = 0x3C, TMR0L = 0xB0; // Remet a l'offset
 
+#if UNIT_TESTS
+        ADCON0bits.GO = 1;
+#else
         if (COUNT_100MS % 50 == 0) ADCON0bits.GO = 1; // ADC Start
-
+#endif
         COUNT_100MS++; // Augmente le compteur
 
         // Lire la valeur du sonar
         DISTANCE_OBJET = SONAR_Read(0xE0, 0x02);
         // Armer le sonar
-        // SONAR_Write(0xE0, 0x51); // TODO: Ignore for simulation
+        SONAR_Write(0xE0, 0x51);
 
         // Si tension batterie, faire clignoter
         if (VOLTAGE < U_BAT_MIN)
