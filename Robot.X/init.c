@@ -4,13 +4,18 @@
 #include <p18f2520.h>
 
 int init(void) {
-    /// Clock: 8 MHz
+    int i = 0;
+    char texte_init[] = "FIN INIT\r\n";
+    /// Clock: 8 MHz X
     OSCCONbits.IRCF = 0b111;
 
-    /// Eteindre les capteurs IR
-    TRISBbits.RB0 = 0;
-    PORTBbits.RB0 = 0;
+    /// Eteindre les capteurs IR X
+    TRISAbits.RA0 = 0;
+    PORTAbits.RA0 = 0;
+    TRISAbits.RA1 = 0;
+    PORTAbits.RA1 = 0;
 
+    
     /// LED Vie: Output pour indiquer l'etat de la batterie
     TRISBbits.RB5 = 0;
 
@@ -33,7 +38,7 @@ int init(void) {
     /// Telecommande: Interrupt Enable
     INTCONbits.INT0IE = 1;
 
-    /** TIMER0
+    /** TIMER0 X
      *
      * Actualise l'etat de la batterie, calcule le sonar et fait decelerer.
      *
@@ -83,7 +88,7 @@ int init(void) {
     /// ADC: Enable
     ADCON0bits.ADON = 1;
     /// ADC: Interrupt low priority
-    IPR1bits.ADIP = 1;
+    IPR1bits.ADIP = 0;
     /// ADC: Clear Interrupt Flag
     PIR1bits.ADIF = 0;
     /// ADC: Interrupt Enable
@@ -92,7 +97,7 @@ int init(void) {
     /*I2C Init*/
     MI2CInit();
     // Armer le sonar
-    SONAR_Write(0xE0, 0x51);  // TODO: Ignore for simulation
+    // SONAR_Write(0xE0, 0x51);  // TODO: Ignore for simulation
 
     /*UART Init*/
     /// Serial: TX (voir doc)
@@ -101,13 +106,13 @@ int init(void) {
     TRISCbits.RC7 = 1;
 
     /// Serial: 8-bit Baud Rate Generator
-    BAUDCONbits.BRG16 = 0;
+    BAUDCONbits.BRG16 = 1;
     /// Serial: High Baud Rate Select bit : High Speed
     TXSTAbits.BRGH = 1;
     /// Serial: Async mode
     TXSTAbits.SYNC = 0;
     /// Serial: Voir documentation pour reglage conseille page 207, edition 2008
-    SPBRG = 51; // 9.615 kHz
+    SPBRG = 207; // 9615 Hz
 
     /// Serial: Transmit Enable
     TXSTAbits.TXEN = 1;
@@ -119,7 +124,7 @@ int init(void) {
     /// TX: Clear Interrupt Flag
     PIR1bits.TXIF = 0;
     /// TX: Interrupt Enable
-    PIE1bits.TXIE = 1;
+    PIE1bits.TXIE = 0;
 
     /** TIMER2
      *
@@ -156,6 +161,15 @@ int init(void) {
     /// Global High Interrupt: Enable
     INTCONbits.GIEH = 1;
     /// Priority Mode: Low et High
-    RCONbits.IPEN = 0;
+    RCONbits.IPEN = 1;
+
+    while(i < 10) {
+        if (PIR1bits.TXIF) {
+            PIR1bits.TXIF = 0;
+            TXREG = texte_init[i];
+            i++;
+        }
+    }
     return 0;
 }
+

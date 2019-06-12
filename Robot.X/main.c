@@ -6,7 +6,7 @@
  */
 
 #pragma config OSC = INTIO67
-#pragma config PBADEN = OFF, WDT = OFF, LVP = OFF, DEBUG = ON
+#pragma config PBADEN = OFF, WDT = OFF, LVP = OFF
 
 #include "init.h"
 #include "interrupts.h"
@@ -19,6 +19,8 @@
  */
 void main(void) {
     init();
-    loop();
-    while(1);
+    while (1) {
+        IS_START = 0;
+        loop();
+    }
 }

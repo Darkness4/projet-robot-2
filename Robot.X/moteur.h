@@ -5,6 +5,5 @@ void CommandeMoteur(int percent);
 void Tourner(int percent, char direction);
 void Avancer(int percent);
 void Calibration(void);
-void Decelerer(void);
 
 #endif

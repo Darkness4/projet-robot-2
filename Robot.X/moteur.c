@@ -1,6 +1,7 @@
 #include "moteur.h"
 #include "globals.h"
 #include "init.h"
+#include "MI2C.h"
 #include <p18f2520.h>
 
 void CommandeMoteur(int percent) {
@@ -26,8 +27,6 @@ void CommandeMoteur(int percent) {
 }
 
 void Tourner(int percent, char direction) {
-    // Decelerer();  // TODO: Checker si le systeme "se suspend" sur le réel
-
     if (direction == 'd') {
         PORTAbits.RA6 = 1; // DIRD
         PORTAbits.RA7 = 0; // DIRG
@@ -50,23 +49,34 @@ void Avancer(int percent) {
 
 void Calibration(void) {
     int mesure = DISTANCE_OBJET;
-    while (PERCENT > 1) {
-        if (DISTANCE_OBJET > mesure + 10) {
-            if (PORTAbits.RA6 == 1 && PORTAbits.RA7 == 0) { // si il tourne a droite
-                PERCENT -= 3;
-                Tourner(PERCENT, 'g');
-            }
-            if (PORTAbits.RA7 == 1 && PORTAbits.RA6 == 0) { // si il tourne a gauche
-                PERCENT -= 3;
-                Tourner(PERCENT, 'd');
-            }
-        } else {
-            mesure = DISTANCE_OBJET;
+    int time;
+    int time2;
+    int mini_temp = 100000;
+    int idx_temp;
+    char i = 0;
+    char j;
+    time = COUNT_100MS;
+    Tourner(25, 'd');
+    while(COUNT_100MS - time < 30) {
+        if (i < 60) {
+            DISTANCE_OBJET_TABLE[i] = DISTANCE_OBJET;
+            TIME_OBJET_TABLE[i] = COUNT_100MS - time;
+            i++;
+            time2 = COUNT_100MS;
+            if (Write_PCF8574(0x40, ~i)) Write_PCF8574(0x40, 0);
+        }
+        delay_100ms(1);
+    }
+    CommandeMoteur(0);
+
+    for (j = 0; j < i; j++) {
+        if (DISTANCE_OBJET_TABLE[j] < mini_temp) {
+            mini_temp = DISTANCE_OBJET_TABLE[j];
+            idx_temp = j;
         }
     }
-}
-
-void Decelerer(void) {
-    /*if(PERCENT > 0) DECELERER = 1;
-    while (PERCENT > 0);*/
+    Tourner(25, 'g');
+    if (Write_PCF8574(0x40, ~idx_temp)) Write_PCF8574(0x40, 0);
+    delay_100ms(TIME_OBJET_TABLE[i - 1] - TIME_OBJET_TABLE[idx_temp]);
+    CommandeMoteur(0);
 }
