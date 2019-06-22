@@ -1,0 +1,87 @@
+\hypertarget{MI2C_8h}{}\section{M\+I2\+C.\+h File Reference}
+\label{MI2C_8h}\index{MI2C.h@{MI2C.h}}
+
+
+Gestionnaire I2C.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{MI2C_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{MI2C_8h_a96c7f3366c63a6be1dc36974f565843c}{M\+I2\+C\+Init}} (void)
+\item 
+char \mbox{\hyperlink{MI2C_8h_a218ecb1a6412303d692d724c41301d5b}{Detecte\+\_\+i2c}} (char adresse\+\_\+i2c)
+\item 
+void \mbox{\hyperlink{MI2C_8h_a19d276e6ce555a17fc01012aed957f43}{S\+O\+N\+A\+R\+\_\+\+Write}} (char adresse\+\_\+i2c, char commande)
+\item 
+int \mbox{\hyperlink{MI2C_8h_a0894a2f458e9568a8ad4706cf1131370}{S\+O\+N\+A\+R\+\_\+\+Read}} (char adresse\+\_\+i2c, char registre\+\_\+ditance)
+\item 
+char \mbox{\hyperlink{MI2C_8h_a5e6d33974c7a212698e9c6d79ffb8e0a}{Lire\+\_\+i2c\+\_\+\+Telecom}} (char adresse\+\_\+i2c, char $\ast$Recv\+\_\+\+Buff)
+\item 
+char \mbox{\hyperlink{MI2C_8h_a784e1cd553e62ec2018806845084da91}{Ecrire\+\_\+i2c\+\_\+\+Telecom}} (char adresse\+\_\+i2c, char $\ast$Send\+\_\+\+Buff)
+\item 
+char \mbox{\hyperlink{MI2C_8h_a23e5a1f2844444bc270deb634a6bd63c}{Write\+\_\+\+P\+C\+F8574}} (char adresse\+\_\+i2c, char data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Gestionnaire I2C. 
+
+\begin{DoxyAuthor}{Author}
+P. G\+E\+N\+T\+R\+IC 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{MI2C_8h_a218ecb1a6412303d692d724c41301d5b}\label{MI2C_8h_a218ecb1a6412303d692d724c41301d5b}} 
+\index{MI2C.h@{MI2C.h}!Detecte\_i2c@{Detecte\_i2c}}
+\index{Detecte\_i2c@{Detecte\_i2c}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{Detecte\_i2c()}{Detecte\_i2c()}}
+{\footnotesize\ttfamily char Detecte\+\_\+i2c (\begin{DoxyParamCaption}\item[{char}]{adresse\+\_\+i2c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MI2C_8h_a784e1cd553e62ec2018806845084da91}\label{MI2C_8h_a784e1cd553e62ec2018806845084da91}} 
+\index{MI2C.h@{MI2C.h}!Ecrire\_i2c\_Telecom@{Ecrire\_i2c\_Telecom}}
+\index{Ecrire\_i2c\_Telecom@{Ecrire\_i2c\_Telecom}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{Ecrire\_i2c\_Telecom()}{Ecrire\_i2c\_Telecom()}}
+{\footnotesize\ttfamily char Ecrire\+\_\+i2c\+\_\+\+Telecom (\begin{DoxyParamCaption}\item[{char}]{adresse\+\_\+i2c,  }\item[{char $\ast$}]{Send\+\_\+\+Buff }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MI2C_8h_a5e6d33974c7a212698e9c6d79ffb8e0a}\label{MI2C_8h_a5e6d33974c7a212698e9c6d79ffb8e0a}} 
+\index{MI2C.h@{MI2C.h}!Lire\_i2c\_Telecom@{Lire\_i2c\_Telecom}}
+\index{Lire\_i2c\_Telecom@{Lire\_i2c\_Telecom}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{Lire\_i2c\_Telecom()}{Lire\_i2c\_Telecom()}}
+{\footnotesize\ttfamily char Lire\+\_\+i2c\+\_\+\+Telecom (\begin{DoxyParamCaption}\item[{char}]{adresse\+\_\+i2c,  }\item[{char $\ast$}]{Recv\+\_\+\+Buff }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MI2C_8h_a96c7f3366c63a6be1dc36974f565843c}\label{MI2C_8h_a96c7f3366c63a6be1dc36974f565843c}} 
+\index{MI2C.h@{MI2C.h}!MI2CInit@{MI2CInit}}
+\index{MI2CInit@{MI2CInit}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{MI2CInit()}{MI2CInit()}}
+{\footnotesize\ttfamily void M\+I2\+C\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MI2C_8h_a0894a2f458e9568a8ad4706cf1131370}\label{MI2C_8h_a0894a2f458e9568a8ad4706cf1131370}} 
+\index{MI2C.h@{MI2C.h}!SONAR\_Read@{SONAR\_Read}}
+\index{SONAR\_Read@{SONAR\_Read}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{SONAR\_Read()}{SONAR\_Read()}}
+{\footnotesize\ttfamily int S\+O\+N\+A\+R\+\_\+\+Read (\begin{DoxyParamCaption}\item[{char}]{adresse\+\_\+i2c,  }\item[{char}]{registre\+\_\+ditance }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MI2C_8h_a19d276e6ce555a17fc01012aed957f43}\label{MI2C_8h_a19d276e6ce555a17fc01012aed957f43}} 
+\index{MI2C.h@{MI2C.h}!SONAR\_Write@{SONAR\_Write}}
+\index{SONAR\_Write@{SONAR\_Write}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{SONAR\_Write()}{SONAR\_Write()}}
+{\footnotesize\ttfamily void S\+O\+N\+A\+R\+\_\+\+Write (\begin{DoxyParamCaption}\item[{char}]{adresse\+\_\+i2c,  }\item[{char}]{commande }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MI2C_8h_a23e5a1f2844444bc270deb634a6bd63c}\label{MI2C_8h_a23e5a1f2844444bc270deb634a6bd63c}} 
+\index{MI2C.h@{MI2C.h}!Write\_PCF8574@{Write\_PCF8574}}
+\index{Write\_PCF8574@{Write\_PCF8574}!MI2C.h@{MI2C.h}}
+\subsubsection{\texorpdfstring{Write\_PCF8574()}{Write\_PCF8574()}}
+{\footnotesize\ttfamily char Write\+\_\+\+P\+C\+F8574 (\begin{DoxyParamCaption}\item[{char}]{adresse\+\_\+i2c,  }\item[{char}]{data }\end{DoxyParamCaption})}
+

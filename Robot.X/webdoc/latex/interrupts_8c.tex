@@ -1,0 +1,292 @@
+\hypertarget{interrupts_8c}{}\section{interrupts.\+c File Reference}
+\label{interrupts_8c}\index{interrupts.c@{interrupts.c}}
+
+
+Interruptions du programme.  
+
+
+{\ttfamily \#include $<$p18f2520.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}M\+I2\+C.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}moteur.\+h\char`\"{}}\newline
+Include dependency graph for interrupts.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interrupts_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interrupts_8c_abe96991a007f326825df56be2a922b54}{High\+I\+SR}} (void)
+\begin{DoxyCompactList}\small\item\em Interruptions haute priorite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interrupts_8c_aaba2270f946f07f65d88b65742e8ec27}{Low\+I\+SR}} (void)
+\begin{DoxyCompactList}\small\item\em Interruptions basse priorite. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{interrupts_8c_aa4c8d990a92161aadd20dce0c84d6d99}{Traduire\+\_\+i2c\+\_\+\+Telecom}} (char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Compare le code de la telecommande et traduit en fonction. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{interrupts_8c_a3d414beb4c29c7c93785fd75c5d45bce}{set\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Actualise U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interrupts_8c_ac6f33b9f6bf719b52ef8538e9c69fc4f}{Int\+High\+Vector}} (void)
+\begin{DoxyCompactList}\small\item\em Vecteur vers interruption haute priorite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interrupts_8c_ac8a5622236d30fa806328e1fd6444f76}{Int\+Low\+Vector}} (void)
+\begin{DoxyCompactList}\small\item\em Vecteur vers interruption basse priorite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static volatile int \mbox{\hyperlink{interrupts_8c_a90efb45cf5130e51117e737729f63974}{voltage\+\_\+tab}} \mbox{[}$\,$\mbox{]} = \{255, 255, 255, 255, 255, 255, 255, 255\}
+\begin{DoxyCompactList}\small\item\em Tension sauvegarde. \end{DoxyCompactList}\item 
+static volatile unsigned char \mbox{\hyperlink{interrupts_8c_a325c6d7fd16961eafb8770de45f8328f}{voltage\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Indice de la valeur a stocker dans le tableau voltage\+\_\+tab. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned \mbox{\hyperlink{interrupts_8c_ac59aeafdeeb22b4d75624534e366eb7d}{interrupt\_not\_handled}}: 1\\
+\>\>{\em Led Test Vie. }\\
+\>unsigned \mbox{\hyperlink{interrupts_8c_a421630677c79c12850f70a74dd802ffc}{battery\_warning}}: 1\\
+\>\>{\em PCF8574: Toutes les leds. }\\
+\} \mbox{\hyperlink{interrupts_8c_a9c4d3c7325348dd2a1f1fa7aa5d8b01c}{LEDS}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Controle des L\+E\+Ds. \end{DoxyCompactList}\item 
+static volatile char \mbox{\hyperlink{interrupts_8c_a446d2a27b976a754456c0dfef9c997fe}{texte\+\_\+uart}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Texte a envoyer a l\textquotesingle{}U\+A\+RT. \end{DoxyCompactList}\item 
+static volatile char \mbox{\hyperlink{interrupts_8c_aebb8322f912244c6fd703ccd0895dc99}{has\+\_\+sent}} = 1
+\begin{DoxyCompactList}\small\item\em Si U\+A\+RT est libre, has\+\_\+sent = 1. \end{DoxyCompactList}\item 
+static volatile int \mbox{\hyperlink{interrupts_8c_a290f8beab148af788f3a5ec3c2eb27df}{pos\+\_\+uart}} = 0
+\begin{DoxyCompactList}\small\item\em Position du charactere dans le String a envoyer. \end{DoxyCompactList}\item 
+static volatile char \mbox{\hyperlink{interrupts_8c_a60ad5c4ce665077329a159939a1e837d}{etat\+\_\+old}} = -\/1
+\item 
+static volatile unsigned char \mbox{\hyperlink{interrupts_8c_ac92c0d5a130691e271717e94cb79c74b}{voltage\+\_\+old}} = -\/1
+\item 
+static volatile int \mbox{\hyperlink{interrupts_8c_acb853049c4087cbff8e4eb0219d8746b}{percent\+\_\+old}} = -\/1
+\item 
+static volatile int \mbox{\hyperlink{interrupts_8c_a93cbdcecb060d46535241213ef12728c}{distance\+\_\+objet\+\_\+old}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interruptions du programme. 
+
+\begin{DoxyAuthor}{Author}
+Marc N\+G\+U\+Y\+EN 
+
+Jonas L\+E\+F\+E\+V\+R\+E-\/\+D\+A\+U\+M\+AL 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/05-\/15 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{interrupts_8c_abe96991a007f326825df56be2a922b54}\label{interrupts_8c_abe96991a007f326825df56be2a922b54}} 
+\index{interrupts.c@{interrupts.c}!HighISR@{HighISR}}
+\index{HighISR@{HighISR}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{HighISR()}{HighISR()}}
+{\footnotesize\ttfamily void High\+I\+SR (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Interruptions haute priorite. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{interrupts_8c_abe96991a007f326825df56be2a922b54_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interrupts_8c_ac6f33b9f6bf719b52ef8538e9c69fc4f}\label{interrupts_8c_ac6f33b9f6bf719b52ef8538e9c69fc4f}} 
+\index{interrupts.c@{interrupts.c}!IntHighVector@{IntHighVector}}
+\index{IntHighVector@{IntHighVector}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{IntHighVector()}{IntHighVector()}}
+{\footnotesize\ttfamily void Int\+High\+Vector (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Vecteur vers interruption haute priorite. 
+
+\mbox{\Hypertarget{interrupts_8c_ac8a5622236d30fa806328e1fd6444f76}\label{interrupts_8c_ac8a5622236d30fa806328e1fd6444f76}} 
+\index{interrupts.c@{interrupts.c}!IntLowVector@{IntLowVector}}
+\index{IntLowVector@{IntLowVector}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{IntLowVector()}{IntLowVector()}}
+{\footnotesize\ttfamily void Int\+Low\+Vector (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Vecteur vers interruption basse priorite. 
+
+\mbox{\Hypertarget{interrupts_8c_aaba2270f946f07f65d88b65742e8ec27}\label{interrupts_8c_aaba2270f946f07f65d88b65742e8ec27}} 
+\index{interrupts.c@{interrupts.c}!LowISR@{LowISR}}
+\index{LowISR@{LowISR}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{LowISR()}{LowISR()}}
+{\footnotesize\ttfamily void Low\+I\+SR (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Interruptions basse priorite. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{interrupts_8c_aaba2270f946f07f65d88b65742e8ec27_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interrupts_8c_a3d414beb4c29c7c93785fd75c5d45bce}\label{interrupts_8c_a3d414beb4c29c7c93785fd75c5d45bce}} 
+\index{interrupts.c@{interrupts.c}!setState@{setState}}
+\index{setState@{setState}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily static void set\+State (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Actualise U\+A\+RT. 
+
+Actualise le message U\+A\+RT. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{interrupts_8c_a3d414beb4c29c7c93785fd75c5d45bce_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interrupts_8c_aa4c8d990a92161aadd20dce0c84d6d99}\label{interrupts_8c_aa4c8d990a92161aadd20dce0c84d6d99}} 
+\index{interrupts.c@{interrupts.c}!Traduire\_i2c\_Telecom@{Traduire\_i2c\_Telecom}}
+\index{Traduire\_i2c\_Telecom@{Traduire\_i2c\_Telecom}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{Traduire\_i2c\_Telecom()}{Traduire\_i2c\_Telecom()}}
+{\footnotesize\ttfamily static void Traduire\+\_\+i2c\+\_\+\+Telecom (\begin{DoxyParamCaption}\item[{char $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compare le code de la telecommande et traduit en fonction. 
+
+Traite le message.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Message I2C de la telecommande \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{interrupts_8c_aa4c8d990a92161aadd20dce0c84d6d99_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{interrupts_8c_a421630677c79c12850f70a74dd802ffc}\label{interrupts_8c_a421630677c79c12850f70a74dd802ffc}} 
+\index{interrupts.c@{interrupts.c}!battery\_warning@{battery\_warning}}
+\index{battery\_warning@{battery\_warning}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{battery\_warning}{battery\_warning}}
+{\footnotesize\ttfamily unsigned battery\+\_\+warning}
+
+
+
+P\+C\+F8574\+: Toutes les leds. 
+
+\mbox{\Hypertarget{interrupts_8c_a93cbdcecb060d46535241213ef12728c}\label{interrupts_8c_a93cbdcecb060d46535241213ef12728c}} 
+\index{interrupts.c@{interrupts.c}!distance\_objet\_old@{distance\_objet\_old}}
+\index{distance\_objet\_old@{distance\_objet\_old}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{distance\_objet\_old}{distance\_objet\_old}}
+{\footnotesize\ttfamily volatile int distance\+\_\+objet\+\_\+old = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{interrupts_8c_a60ad5c4ce665077329a159939a1e837d}\label{interrupts_8c_a60ad5c4ce665077329a159939a1e837d}} 
+\index{interrupts.c@{interrupts.c}!etat\_old@{etat\_old}}
+\index{etat\_old@{etat\_old}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{etat\_old}{etat\_old}}
+{\footnotesize\ttfamily volatile char etat\+\_\+old = -\/1\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{interrupts_8c_aebb8322f912244c6fd703ccd0895dc99}\label{interrupts_8c_aebb8322f912244c6fd703ccd0895dc99}} 
+\index{interrupts.c@{interrupts.c}!has\_sent@{has\_sent}}
+\index{has\_sent@{has\_sent}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{has\_sent}{has\_sent}}
+{\footnotesize\ttfamily volatile char has\+\_\+sent = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Si U\+A\+RT est libre, has\+\_\+sent = 1. 
+
+\mbox{\Hypertarget{interrupts_8c_ac59aeafdeeb22b4d75624534e366eb7d}\label{interrupts_8c_ac59aeafdeeb22b4d75624534e366eb7d}} 
+\index{interrupts.c@{interrupts.c}!interrupt\_not\_handled@{interrupt\_not\_handled}}
+\index{interrupt\_not\_handled@{interrupt\_not\_handled}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{interrupt\_not\_handled}{interrupt\_not\_handled}}
+{\footnotesize\ttfamily unsigned interrupt\+\_\+not\+\_\+handled}
+
+
+
+Led Test Vie. 
+
+\mbox{\Hypertarget{interrupts_8c_a9c4d3c7325348dd2a1f1fa7aa5d8b01c}\label{interrupts_8c_a9c4d3c7325348dd2a1f1fa7aa5d8b01c}} 
+\index{interrupts.c@{interrupts.c}!LEDS@{LEDS}}
+\index{LEDS@{LEDS}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{LEDS}{LEDS}}
+{\footnotesize\ttfamily struct \{ ... \}   L\+E\+DS\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Controle des L\+E\+Ds. 
+
+\mbox{\Hypertarget{interrupts_8c_acb853049c4087cbff8e4eb0219d8746b}\label{interrupts_8c_acb853049c4087cbff8e4eb0219d8746b}} 
+\index{interrupts.c@{interrupts.c}!percent\_old@{percent\_old}}
+\index{percent\_old@{percent\_old}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{percent\_old}{percent\_old}}
+{\footnotesize\ttfamily volatile int percent\+\_\+old = -\/1\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{interrupts_8c_a290f8beab148af788f3a5ec3c2eb27df}\label{interrupts_8c_a290f8beab148af788f3a5ec3c2eb27df}} 
+\index{interrupts.c@{interrupts.c}!pos\_uart@{pos\_uart}}
+\index{pos\_uart@{pos\_uart}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{pos\_uart}{pos\_uart}}
+{\footnotesize\ttfamily volatile int pos\+\_\+uart = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Position du charactere dans le String a envoyer. 
+
+\mbox{\Hypertarget{interrupts_8c_a446d2a27b976a754456c0dfef9c997fe}\label{interrupts_8c_a446d2a27b976a754456c0dfef9c997fe}} 
+\index{interrupts.c@{interrupts.c}!texte\_uart@{texte\_uart}}
+\index{texte\_uart@{texte\_uart}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{texte\_uart}{texte\_uart}}
+{\footnotesize\ttfamily volatile char texte\+\_\+uart\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{" : VB:   .  , \%:     , d:      , t:            ,    \(\backslash\)r\(\backslash\)n"}}
+
+\end{DoxyCode}
+
+
+Texte a envoyer a l\textquotesingle{}U\+A\+RT. 
+
+\mbox{\Hypertarget{interrupts_8c_a325c6d7fd16961eafb8770de45f8328f}\label{interrupts_8c_a325c6d7fd16961eafb8770de45f8328f}} 
+\index{interrupts.c@{interrupts.c}!voltage\_count@{voltage\_count}}
+\index{voltage\_count@{voltage\_count}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{voltage\_count}{voltage\_count}}
+{\footnotesize\ttfamily volatile unsigned char voltage\+\_\+count = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Indice de la valeur a stocker dans le tableau voltage\+\_\+tab. 
+
+\mbox{\Hypertarget{interrupts_8c_ac92c0d5a130691e271717e94cb79c74b}\label{interrupts_8c_ac92c0d5a130691e271717e94cb79c74b}} 
+\index{interrupts.c@{interrupts.c}!voltage\_old@{voltage\_old}}
+\index{voltage\_old@{voltage\_old}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{voltage\_old}{voltage\_old}}
+{\footnotesize\ttfamily volatile unsigned char voltage\+\_\+old = -\/1\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{interrupts_8c_a90efb45cf5130e51117e737729f63974}\label{interrupts_8c_a90efb45cf5130e51117e737729f63974}} 
+\index{interrupts.c@{interrupts.c}!voltage\_tab@{voltage\_tab}}
+\index{voltage\_tab@{voltage\_tab}!interrupts.c@{interrupts.c}}
+\subsubsection{\texorpdfstring{voltage\_tab}{voltage\_tab}}
+{\footnotesize\ttfamily volatile int voltage\+\_\+tab\mbox{[}$\,$\mbox{]} = \{255, 255, 255, 255, 255, 255, 255, 255\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Tension sauvegarde. 
+

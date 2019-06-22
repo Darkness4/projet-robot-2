@@ -1,0 +1,196 @@
+\hypertarget{globals_8h}{}\section{globals.\+h File Reference}
+\label{globals_8h}\index{globals.h@{globals.h}}
+
+
+Configuration du programme.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{globals_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{globals_8h_a8fd24f56528333b035faeb173d24319f}{U\+N\+I\+T\+\_\+\+T\+E\+S\+TS}}~0
+\begin{DoxyCompactList}\small\item\em Active les tests unitaires (D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+NT doit être desactive) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{globals_8h_ad5aeca1a1a793c8ba18f85cbac89e768}{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+NT}}~1
+\begin{DoxyCompactList}\small\item\em Active l\textquotesingle{}affichage debug. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{globals_8h_ac8c47e8deb590341cab987b35cbcf1c8}{U\+\_\+\+B\+A\+T\+\_\+\+M\+IN}}~160
+\begin{DoxyCompactList}\small\item\em Seuil a ne pas depasser (10 V) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1b}{Etat}} \{ \mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1bad3f429d8462f3bc5bfcebf615a7fcc1d}{N\+O\+T\+\_\+\+S\+T\+A\+RT}}, 
+\mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1ba13d000b4d7dc70d90239b7430d1eb6b2}{S\+T\+A\+RT}}, 
+\mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1ba8f0fcd9890ac7f49b178f78e2d60ed57}{C\+A\+L\+IB}}, 
+\mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1ba439c688a4e9ed31638d5922a50680a8e}{R\+UN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Etat du programme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{globals_8h_a6343afa66a6381ca8e557ee8383ba330}{delay\+\_\+100ms}} (int duration)
+\begin{DoxyCompactList}\small\item\em Attendre 100ms multiplie par \mbox{[}duration\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile char \mbox{\hyperlink{globals_8h_abaae1689889b0f6e919247207bed4861}{E\+T\+AT}}
+\begin{DoxyCompactList}\small\item\em Condition de demarrage. \end{DoxyCompactList}\item 
+volatile unsigned char \mbox{\hyperlink{globals_8h_ab103c7a46063654a962721d7dca95182}{V\+O\+L\+T\+A\+GE}}
+\begin{DoxyCompactList}\small\item\em Voltage. \end{DoxyCompactList}\item 
+volatile int \mbox{\hyperlink{globals_8h_a470b0daf8d5972411d381631a221fde1}{P\+E\+R\+C\+E\+NT}}
+\begin{DoxyCompactList}\small\item\em Rapport cyclique. \end{DoxyCompactList}\item 
+volatile int \mbox{\hyperlink{globals_8h_aec9ec2388323cfe7d3854f000fe00427}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+O\+B\+J\+ET}}
+\begin{DoxyCompactList}\small\item\em Distance de l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+volatile long \mbox{\hyperlink{globals_8h_a57700d584733d1768d0deec8068929e9}{C\+O\+U\+N\+T\+\_\+100\+MS}}
+\begin{DoxyCompactList}\small\item\em Count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuration du programme. 
+
+\begin{DoxyAuthor}{Author}
+Marc N\+G\+U\+Y\+EN 
+
+Jonas L\+E\+F\+E\+V\+R\+E-\/\+D\+A\+U\+M\+AL 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/05-\/15 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{globals_8h_ad5aeca1a1a793c8ba18f85cbac89e768}\label{globals_8h_ad5aeca1a1a793c8ba18f85cbac89e768}} 
+\index{globals.h@{globals.h}!DEBUG\_PRINT@{DEBUG\_PRINT}}
+\index{DEBUG\_PRINT@{DEBUG\_PRINT}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{DEBUG\_PRINT}{DEBUG\_PRINT}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+NT~1}
+
+
+
+Active l\textquotesingle{}affichage debug. 
+
+\mbox{\Hypertarget{globals_8h_ac8c47e8deb590341cab987b35cbcf1c8}\label{globals_8h_ac8c47e8deb590341cab987b35cbcf1c8}} 
+\index{globals.h@{globals.h}!U\_BAT\_MIN@{U\_BAT\_MIN}}
+\index{U\_BAT\_MIN@{U\_BAT\_MIN}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{U\_BAT\_MIN}{U\_BAT\_MIN}}
+{\footnotesize\ttfamily \#define U\+\_\+\+B\+A\+T\+\_\+\+M\+IN~160}
+
+
+
+Seuil a ne pas depasser (10 V) 
+
+\mbox{\Hypertarget{globals_8h_a8fd24f56528333b035faeb173d24319f}\label{globals_8h_a8fd24f56528333b035faeb173d24319f}} 
+\index{globals.h@{globals.h}!UNIT\_TESTS@{UNIT\_TESTS}}
+\index{UNIT\_TESTS@{UNIT\_TESTS}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{UNIT\_TESTS}{UNIT\_TESTS}}
+{\footnotesize\ttfamily \#define U\+N\+I\+T\+\_\+\+T\+E\+S\+TS~0}
+
+
+
+Active les tests unitaires (D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+NT doit être desactive) 
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{globals_8h_a767b7a63d7677f92d697621b4166af1b}\label{globals_8h_a767b7a63d7677f92d697621b4166af1b}} 
+\index{globals.h@{globals.h}!Etat@{Etat}}
+\index{Etat@{Etat}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{Etat}{Etat}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1b}{Etat}}}
+
+
+
+Etat du programme. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_START@{NOT\_START}!globals.h@{globals.h}}\index{globals.h@{globals.h}!NOT\_START@{NOT\_START}}}\mbox{\Hypertarget{globals_8h_a767b7a63d7677f92d697621b4166af1bad3f429d8462f3bc5bfcebf615a7fcc1d}\label{globals_8h_a767b7a63d7677f92d697621b4166af1bad3f429d8462f3bc5bfcebf615a7fcc1d}} 
+N\+O\+T\+\_\+\+S\+T\+A\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{START@{START}!globals.h@{globals.h}}\index{globals.h@{globals.h}!START@{START}}}\mbox{\Hypertarget{globals_8h_a767b7a63d7677f92d697621b4166af1ba13d000b4d7dc70d90239b7430d1eb6b2}\label{globals_8h_a767b7a63d7677f92d697621b4166af1ba13d000b4d7dc70d90239b7430d1eb6b2}} 
+S\+T\+A\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CALIB@{CALIB}!globals.h@{globals.h}}\index{globals.h@{globals.h}!CALIB@{CALIB}}}\mbox{\Hypertarget{globals_8h_a767b7a63d7677f92d697621b4166af1ba8f0fcd9890ac7f49b178f78e2d60ed57}\label{globals_8h_a767b7a63d7677f92d697621b4166af1ba8f0fcd9890ac7f49b178f78e2d60ed57}} 
+C\+A\+L\+IB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUN@{RUN}!globals.h@{globals.h}}\index{globals.h@{globals.h}!RUN@{RUN}}}\mbox{\Hypertarget{globals_8h_a767b7a63d7677f92d697621b4166af1ba439c688a4e9ed31638d5922a50680a8e}\label{globals_8h_a767b7a63d7677f92d697621b4166af1ba439c688a4e9ed31638d5922a50680a8e}} 
+R\+UN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{globals_8h_a6343afa66a6381ca8e557ee8383ba330}\label{globals_8h_a6343afa66a6381ca8e557ee8383ba330}} 
+\index{globals.h@{globals.h}!delay\_100ms@{delay\_100ms}}
+\index{delay\_100ms@{delay\_100ms}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{delay\_100ms()}{delay\_100ms()}}
+{\footnotesize\ttfamily void delay\+\_\+100ms (\begin{DoxyParamCaption}\item[{int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Attendre 100ms multiplie par \mbox{[}duration\mbox{]}. 
+
+Attendre 100ms multiplie par \mbox{[}duration\mbox{]}. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{globals_8h_a57700d584733d1768d0deec8068929e9}\label{globals_8h_a57700d584733d1768d0deec8068929e9}} 
+\index{globals.h@{globals.h}!COUNT\_100MS@{COUNT\_100MS}}
+\index{COUNT\_100MS@{COUNT\_100MS}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{COUNT\_100MS}{COUNT\_100MS}}
+{\footnotesize\ttfamily volatile long C\+O\+U\+N\+T\+\_\+100\+MS}
+
+
+
+Count. 
+
+\mbox{\Hypertarget{globals_8h_aec9ec2388323cfe7d3854f000fe00427}\label{globals_8h_aec9ec2388323cfe7d3854f000fe00427}} 
+\index{globals.h@{globals.h}!DISTANCE\_OBJET@{DISTANCE\_OBJET}}
+\index{DISTANCE\_OBJET@{DISTANCE\_OBJET}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{DISTANCE\_OBJET}{DISTANCE\_OBJET}}
+{\footnotesize\ttfamily volatile int D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+O\+B\+J\+ET}
+
+
+
+Distance de l\textquotesingle{}objet. 
+
+\mbox{\Hypertarget{globals_8h_abaae1689889b0f6e919247207bed4861}\label{globals_8h_abaae1689889b0f6e919247207bed4861}} 
+\index{globals.h@{globals.h}!ETAT@{ETAT}}
+\index{ETAT@{ETAT}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{ETAT}{ETAT}}
+{\footnotesize\ttfamily volatile char E\+T\+AT}
+
+
+
+Condition de demarrage. 
+
+\mbox{\Hypertarget{globals_8h_a470b0daf8d5972411d381631a221fde1}\label{globals_8h_a470b0daf8d5972411d381631a221fde1}} 
+\index{globals.h@{globals.h}!PERCENT@{PERCENT}}
+\index{PERCENT@{PERCENT}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{PERCENT}{PERCENT}}
+{\footnotesize\ttfamily volatile int P\+E\+R\+C\+E\+NT}
+
+
+
+Rapport cyclique. 
+
+\mbox{\Hypertarget{globals_8h_ab103c7a46063654a962721d7dca95182}\label{globals_8h_ab103c7a46063654a962721d7dca95182}} 
+\index{globals.h@{globals.h}!VOLTAGE@{VOLTAGE}}
+\index{VOLTAGE@{VOLTAGE}!globals.h@{globals.h}}
+\subsubsection{\texorpdfstring{VOLTAGE}{VOLTAGE}}
+{\footnotesize\ttfamily volatile unsigned char V\+O\+L\+T\+A\+GE}
+
+
+
+Voltage. 
+

@@ -1,3 +1,12 @@
+/**
+ * @file globals.c
+ * @author Marc NGUYEN
+ * @author Jonas LEFEVRE-DAUMAL
+ * @brief Configuration du programme
+ * @version 1.0.0
+ * @date 2019-05-15
+ *
+ */
 #include "globals.h"
 
 /// Condition de demarrage
@@ -17,6 +26,7 @@ volatile long COUNT_100MS = 0;
 
 /// Delay a 100ms via TMR0
 void delay_100ms(int duration) {
-    int time_origin = COUNT_100MS;
-    while (COUNT_100MS - time_origin < duration);
+  int time_origin = COUNT_100MS;
+  while (COUNT_100MS - time_origin < duration)
+    ;
 }

@@ -1,3 +1,11 @@
+
+/**
+ * @file MI2C.h
+ * @author P. GENTRIC
+ * @brief Gestionnaire I2C
+ * @version 1.0.0
+ *
+ */
 #ifndef _MI2C_H_
 #define _MI2C_H_
 

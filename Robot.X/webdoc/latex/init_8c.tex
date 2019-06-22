@@ -1,0 +1,222 @@
+\hypertarget{init_8c}{}\section{init.\+c File Reference}
+\label{init_8c}\index{init.c@{init.c}}
+
+
+Initialisation du programme.  
+
+
+{\ttfamily \#include \char`\"{}init.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$p18f2520.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}M\+I2\+C.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}unit\+\_\+tests.\+h\char`\"{}}\newline
+Include dependency graph for init.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{init_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{init_8c_a8f2c41c5099c461bdd7c7cf5a89453ae}{init\+\_\+clk}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise le C\+LK. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_acb61470163320ac1707af328190fc3f3}{init\+\_\+tmr0}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise le T\+M\+R0. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_ad36d9652b04ab8a20899ee1f647d5211}{init\+\_\+tmr2}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise le T\+M\+R2. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_a768b0718ac3959aa2f70355fd97ce16d}{init\+\_\+uart}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise U\+A\+RT. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_af15910ec963153cccbd37e1ddfc85851}{init\+\_\+motors}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise les Moteurs. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_a9cf4a417b66a038c3dd1e074be9fde2e}{init\+\_\+interrupts}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise les interruptions. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_a58741f53e3e22ec8db7e66ded93d3b79}{init\+\_\+adc}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise les C\+AN. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{init_8c_af2fe36b5326704436ec8a3e016376b97}{init\+\_\+\+IR}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise les Capteurs IR. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{init_8c_ac92a673771db92e7156490091aef7135}{init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise le robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Initialisation du programme. 
+
+\begin{DoxyAuthor}{Author}
+Marc N\+G\+U\+Y\+EN 
+
+Jonas L\+E\+F\+E\+V\+R\+E-\/\+D\+A\+U\+M\+AL 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/05-\/15 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{init_8c_ac92a673771db92e7156490091aef7135}\label{init_8c_ac92a673771db92e7156490091aef7135}} 
+\index{init.c@{init.c}!init@{init}}
+\index{init@{init}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily int init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le robot. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{init_8c_ac92a673771db92e7156490091aef7135_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_a58741f53e3e22ec8db7e66ded93d3b79}\label{init_8c_a58741f53e3e22ec8db7e66ded93d3b79}} 
+\index{init.c@{init.c}!init\_adc@{init\_adc}}
+\index{init\_adc@{init\_adc}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_adc()}{init\_adc()}}
+{\footnotesize\ttfamily static void init\+\_\+adc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise les C\+AN. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{init_8c_a58741f53e3e22ec8db7e66ded93d3b79_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_a8f2c41c5099c461bdd7c7cf5a89453ae}\label{init_8c_a8f2c41c5099c461bdd7c7cf5a89453ae}} 
+\index{init.c@{init.c}!init\_clk@{init\_clk}}
+\index{init\_clk@{init\_clk}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_clk()}{init\_clk()}}
+{\footnotesize\ttfamily static void init\+\_\+clk (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise le C\+LK. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{init_8c_a8f2c41c5099c461bdd7c7cf5a89453ae_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_a9cf4a417b66a038c3dd1e074be9fde2e}\label{init_8c_a9cf4a417b66a038c3dd1e074be9fde2e}} 
+\index{init.c@{init.c}!init\_interrupts@{init\_interrupts}}
+\index{init\_interrupts@{init\_interrupts}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_interrupts()}{init\_interrupts()}}
+{\footnotesize\ttfamily static void init\+\_\+interrupts (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise les interruptions. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{init_8c_a9cf4a417b66a038c3dd1e074be9fde2e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_af2fe36b5326704436ec8a3e016376b97}\label{init_8c_af2fe36b5326704436ec8a3e016376b97}} 
+\index{init.c@{init.c}!init\_IR@{init\_IR}}
+\index{init\_IR@{init\_IR}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_IR()}{init\_IR()}}
+{\footnotesize\ttfamily static void init\+\_\+\+IR (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise les Capteurs IR. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{init_8c_af2fe36b5326704436ec8a3e016376b97_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_af15910ec963153cccbd37e1ddfc85851}\label{init_8c_af15910ec963153cccbd37e1ddfc85851}} 
+\index{init.c@{init.c}!init\_motors@{init\_motors}}
+\index{init\_motors@{init\_motors}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_motors()}{init\_motors()}}
+{\footnotesize\ttfamily static void init\+\_\+motors (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise les Moteurs. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{init_8c_af15910ec963153cccbd37e1ddfc85851_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_acb61470163320ac1707af328190fc3f3}\label{init_8c_acb61470163320ac1707af328190fc3f3}} 
+\index{init.c@{init.c}!init\_tmr0@{init\_tmr0}}
+\index{init\_tmr0@{init\_tmr0}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_tmr0()}{init\_tmr0()}}
+{\footnotesize\ttfamily static void init\+\_\+tmr0 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise le T\+M\+R0. 
+
+T\+I\+M\+E\+R0
+
+Actualise l\textquotesingle{}etat de la batterie, calcule le sonar et fait decelerer.
+
+Interrompt tout les T=100ms. Mode 16bit =$>$ T\+M\+R0\+\_\+\+Max = 65 536 T$\ast$f\+\_\+osc/4 = 100e-\/3$\ast$8e6/4 = 200 000 $>$ 65 536 Avec prescale \+: T$\ast$f\+\_\+osc/4/\+PS = 100e-\/3$\ast$8e6/4/4 = 50 000 $<$ 65 536 Offset 15536 = 0x3\+C\+B0 Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{init_8c_acb61470163320ac1707af328190fc3f3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_ad36d9652b04ab8a20899ee1f647d5211}\label{init_8c_ad36d9652b04ab8a20899ee1f647d5211}} 
+\index{init.c@{init.c}!init\_tmr2@{init\_tmr2}}
+\index{init\_tmr2@{init\_tmr2}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_tmr2()}{init\_tmr2()}}
+{\footnotesize\ttfamily static void init\+\_\+tmr2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise le T\+M\+R2. 
+
+T\+I\+M\+E\+R2.
+
+En P\+WM, commande les moteurs.
+
+Frequence = 2 k\+Hz.
+
+Init\+: C\+C\+PR = 0 (vitesse nulle) P\+R2 = 249 avec Prescale = 4 Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{init_8c_ad36d9652b04ab8a20899ee1f647d5211_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{init_8c_a768b0718ac3959aa2f70355fd97ce16d}\label{init_8c_a768b0718ac3959aa2f70355fd97ce16d}} 
+\index{init.c@{init.c}!init\_uart@{init\_uart}}
+\index{init\_uart@{init\_uart}!init.c@{init.c}}
+\subsubsection{\texorpdfstring{init\_uart()}{init\_uart()}}
+{\footnotesize\ttfamily static void init\+\_\+uart (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise U\+A\+RT. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{init_8c_a768b0718ac3959aa2f70355fd97ce16d_icgraph}
+\end{center}
+\end{figure}

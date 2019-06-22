@@ -1,0 +1,159 @@
+\hypertarget{moteur_8c}{}\section{moteur.\+c File Reference}
+\label{moteur_8c}\index{moteur.c@{moteur.c}}
+
+
+Commandes moteurs.  
+
+
+{\ttfamily \#include \char`\"{}moteur.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$p18f2520.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}M\+I2\+C.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}init.\+h\char`\"{}}\newline
+Include dependency graph for moteur.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{moteur_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{moteur_8c_a0e0e67ab22f4ee486026b32a81af4037}{Commande\+Moteur}} (int percent)
+\begin{DoxyCompactList}\small\item\em Controle de vitesse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{moteur_8c_a05a281fa21ba109081684b60cf222d08}{Stop\+Moteur}} (void)
+\begin{DoxyCompactList}\small\item\em Stop les moteurs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{moteur_8c_a0e783f6a9108fc0bc7a642285f6f6d52}{Tourner}} (int percent, char direction)
+\begin{DoxyCompactList}\small\item\em Tourner avec les moteurs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{moteur_8c_aa7332815a4db4320d2a170e35cbddf5d}{Avancer}} (int percent)
+\begin{DoxyCompactList}\small\item\em Avancer tout droit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{moteur_8c_a16fbd50a52e02e8038e2ba9e2c5fb191}{Calibration}} (void)
+\begin{DoxyCompactList}\small\item\em Balayer et s\textquotesingle{}aligner avec la cible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static volatile int \mbox{\hyperlink{moteur_8c_aa10c828b08336b90fd89620cb8e3035d}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+O\+B\+J\+E\+T\+\_\+\+T\+A\+B\+LE}} \mbox{[}60\mbox{]}
+\begin{DoxyCompactList}\small\item\em Carte spatiale. \end{DoxyCompactList}\item 
+static volatile int \mbox{\hyperlink{moteur_8c_a295466ef5861bd4f41d0b59410f63310}{T\+I\+M\+E\+\_\+\+O\+B\+J\+E\+T\+\_\+\+T\+A\+B\+LE}} \mbox{[}60\mbox{]}
+\begin{DoxyCompactList}\small\item\em Carte temporelle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Commandes moteurs. 
+
+\begin{DoxyAuthor}{Author}
+Marc N\+G\+U\+Y\+EN 
+
+Jonas L\+E\+F\+E\+V\+R\+E-\/\+D\+A\+U\+M\+AL 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/05-\/15 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{moteur_8c_aa7332815a4db4320d2a170e35cbddf5d}\label{moteur_8c_aa7332815a4db4320d2a170e35cbddf5d}} 
+\index{moteur.c@{moteur.c}!Avancer@{Avancer}}
+\index{Avancer@{Avancer}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{Avancer()}{Avancer()}}
+{\footnotesize\ttfamily void Avancer (\begin{DoxyParamCaption}\item[{int}]{percent }\end{DoxyParamCaption})}
+
+
+
+Avancer tout droit. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{moteur_8c_aa7332815a4db4320d2a170e35cbddf5d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{moteur_8c_a16fbd50a52e02e8038e2ba9e2c5fb191}\label{moteur_8c_a16fbd50a52e02e8038e2ba9e2c5fb191}} 
+\index{moteur.c@{moteur.c}!Calibration@{Calibration}}
+\index{Calibration@{Calibration}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{Calibration()}{Calibration()}}
+{\footnotesize\ttfamily void Calibration (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Balayer et s\textquotesingle{}aligner avec la cible. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{moteur_8c_a16fbd50a52e02e8038e2ba9e2c5fb191_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{moteur_8c_a0e0e67ab22f4ee486026b32a81af4037}\label{moteur_8c_a0e0e67ab22f4ee486026b32a81af4037}} 
+\index{moteur.c@{moteur.c}!CommandeMoteur@{CommandeMoteur}}
+\index{CommandeMoteur@{CommandeMoteur}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{CommandeMoteur()}{CommandeMoteur()}}
+{\footnotesize\ttfamily void Commande\+Moteur (\begin{DoxyParamCaption}\item[{int}]{percent }\end{DoxyParamCaption})}
+
+
+
+Controle de vitesse. 
+
+\mbox{\Hypertarget{moteur_8c_a05a281fa21ba109081684b60cf222d08}\label{moteur_8c_a05a281fa21ba109081684b60cf222d08}} 
+\index{moteur.c@{moteur.c}!StopMoteur@{StopMoteur}}
+\index{StopMoteur@{StopMoteur}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{StopMoteur()}{StopMoteur()}}
+{\footnotesize\ttfamily void Stop\+Moteur (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Stop les moteurs. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{moteur_8c_a05a281fa21ba109081684b60cf222d08_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{moteur_8c_a0e783f6a9108fc0bc7a642285f6f6d52}\label{moteur_8c_a0e783f6a9108fc0bc7a642285f6f6d52}} 
+\index{moteur.c@{moteur.c}!Tourner@{Tourner}}
+\index{Tourner@{Tourner}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{Tourner()}{Tourner()}}
+{\footnotesize\ttfamily void Tourner (\begin{DoxyParamCaption}\item[{int}]{percent,  }\item[{char}]{direction }\end{DoxyParamCaption})}
+
+
+
+Tourner avec les moteurs. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{moteur_8c_a0e783f6a9108fc0bc7a642285f6f6d52_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{moteur_8c_aa10c828b08336b90fd89620cb8e3035d}\label{moteur_8c_aa10c828b08336b90fd89620cb8e3035d}} 
+\index{moteur.c@{moteur.c}!DISTANCE\_OBJET\_TABLE@{DISTANCE\_OBJET\_TABLE}}
+\index{DISTANCE\_OBJET\_TABLE@{DISTANCE\_OBJET\_TABLE}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{DISTANCE\_OBJET\_TABLE}{DISTANCE\_OBJET\_TABLE}}
+{\footnotesize\ttfamily volatile int D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+O\+B\+J\+E\+T\+\_\+\+T\+A\+B\+LE\mbox{[}60\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Carte spatiale. 
+
+\mbox{\Hypertarget{moteur_8c_a295466ef5861bd4f41d0b59410f63310}\label{moteur_8c_a295466ef5861bd4f41d0b59410f63310}} 
+\index{moteur.c@{moteur.c}!TIME\_OBJET\_TABLE@{TIME\_OBJET\_TABLE}}
+\index{TIME\_OBJET\_TABLE@{TIME\_OBJET\_TABLE}!moteur.c@{moteur.c}}
+\subsubsection{\texorpdfstring{TIME\_OBJET\_TABLE}{TIME\_OBJET\_TABLE}}
+{\footnotesize\ttfamily volatile int T\+I\+M\+E\+\_\+\+O\+B\+J\+E\+T\+\_\+\+T\+A\+B\+LE\mbox{[}60\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Carte temporelle. 
+

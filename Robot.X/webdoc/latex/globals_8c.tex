@@ -1,0 +1,115 @@
+\hypertarget{globals_8c}{}\section{globals.\+c File Reference}
+\label{globals_8c}\index{globals.c@{globals.c}}
+
+
+Configuration du programme.  
+
+
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+Include dependency graph for globals.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{globals_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{globals_8c_a6343afa66a6381ca8e557ee8383ba330}{delay\+\_\+100ms}} (int duration)
+\begin{DoxyCompactList}\small\item\em Delay a 100ms via T\+M\+R0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1b}{Etat}} \mbox{\hyperlink{globals_8c_a37e1a97de0130c50aa0399d30626a68d}{E\+T\+AT}} = 0
+\begin{DoxyCompactList}\small\item\em Condition de demarrage. \end{DoxyCompactList}\item 
+volatile unsigned char \mbox{\hyperlink{globals_8c_ab103c7a46063654a962721d7dca95182}{V\+O\+L\+T\+A\+GE}} = 255
+\begin{DoxyCompactList}\small\item\em Voltage. \end{DoxyCompactList}\item 
+volatile int \mbox{\hyperlink{globals_8c_a470b0daf8d5972411d381631a221fde1}{P\+E\+R\+C\+E\+NT}} = 0
+\begin{DoxyCompactList}\small\item\em Rapport cyclique. \end{DoxyCompactList}\item 
+volatile int \mbox{\hyperlink{globals_8c_aec9ec2388323cfe7d3854f000fe00427}{D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+O\+B\+J\+ET}} = 0
+\begin{DoxyCompactList}\small\item\em Distance de l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+volatile long \mbox{\hyperlink{globals_8c_a57700d584733d1768d0deec8068929e9}{C\+O\+U\+N\+T\+\_\+100\+MS}} = 0
+\begin{DoxyCompactList}\small\item\em Count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuration du programme. 
+
+\begin{DoxyAuthor}{Author}
+Marc N\+G\+U\+Y\+EN 
+
+Jonas L\+E\+F\+E\+V\+R\+E-\/\+D\+A\+U\+M\+AL 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2019-\/05-\/15 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{globals_8c_a6343afa66a6381ca8e557ee8383ba330}\label{globals_8c_a6343afa66a6381ca8e557ee8383ba330}} 
+\index{globals.c@{globals.c}!delay\_100ms@{delay\_100ms}}
+\index{delay\_100ms@{delay\_100ms}!globals.c@{globals.c}}
+\subsubsection{\texorpdfstring{delay\_100ms()}{delay\_100ms()}}
+{\footnotesize\ttfamily void delay\+\_\+100ms (\begin{DoxyParamCaption}\item[{int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Delay a 100ms via T\+M\+R0. 
+
+Attendre 100ms multiplie par \mbox{[}duration\mbox{]}. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{globals_8c_a57700d584733d1768d0deec8068929e9}\label{globals_8c_a57700d584733d1768d0deec8068929e9}} 
+\index{globals.c@{globals.c}!COUNT\_100MS@{COUNT\_100MS}}
+\index{COUNT\_100MS@{COUNT\_100MS}!globals.c@{globals.c}}
+\subsubsection{\texorpdfstring{COUNT\_100MS}{COUNT\_100MS}}
+{\footnotesize\ttfamily volatile long C\+O\+U\+N\+T\+\_\+100\+MS = 0}
+
+
+
+Count. 
+
+\mbox{\Hypertarget{globals_8c_aec9ec2388323cfe7d3854f000fe00427}\label{globals_8c_aec9ec2388323cfe7d3854f000fe00427}} 
+\index{globals.c@{globals.c}!DISTANCE\_OBJET@{DISTANCE\_OBJET}}
+\index{DISTANCE\_OBJET@{DISTANCE\_OBJET}!globals.c@{globals.c}}
+\subsubsection{\texorpdfstring{DISTANCE\_OBJET}{DISTANCE\_OBJET}}
+{\footnotesize\ttfamily volatile int D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+O\+B\+J\+ET = 0}
+
+
+
+Distance de l\textquotesingle{}objet. 
+
+\mbox{\Hypertarget{globals_8c_a37e1a97de0130c50aa0399d30626a68d}\label{globals_8c_a37e1a97de0130c50aa0399d30626a68d}} 
+\index{globals.c@{globals.c}!ETAT@{ETAT}}
+\index{ETAT@{ETAT}!globals.c@{globals.c}}
+\subsubsection{\texorpdfstring{ETAT}{ETAT}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{globals_8h_a767b7a63d7677f92d697621b4166af1b}{Etat}} E\+T\+AT = 0}
+
+
+
+Condition de demarrage. 
+
+\mbox{\Hypertarget{globals_8c_a470b0daf8d5972411d381631a221fde1}\label{globals_8c_a470b0daf8d5972411d381631a221fde1}} 
+\index{globals.c@{globals.c}!PERCENT@{PERCENT}}
+\index{PERCENT@{PERCENT}!globals.c@{globals.c}}
+\subsubsection{\texorpdfstring{PERCENT}{PERCENT}}
+{\footnotesize\ttfamily volatile int P\+E\+R\+C\+E\+NT = 0}
+
+
+
+Rapport cyclique. 
+
+\mbox{\Hypertarget{globals_8c_ab103c7a46063654a962721d7dca95182}\label{globals_8c_ab103c7a46063654a962721d7dca95182}} 
+\index{globals.c@{globals.c}!VOLTAGE@{VOLTAGE}}
+\index{VOLTAGE@{VOLTAGE}!globals.c@{globals.c}}
+\subsubsection{\texorpdfstring{VOLTAGE}{VOLTAGE}}
+{\footnotesize\ttfamily volatile unsigned char V\+O\+L\+T\+A\+GE = 255}
+
+
+
+Voltage. 
+

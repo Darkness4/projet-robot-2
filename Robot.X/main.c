@@ -1,8 +1,11 @@
-/*
- * File:   main.c
- * Author: nguye
+/**
+ * @file main.c
+ * @author Marc NGUYEN
+ * @author Jonas LEFEVRE-DAUMAL
+ * @brief Coeur du programme
+ * @version 1.0.0
+ * @date 2019-05-15
  *
- * Created on 6 mai 2019, 16:44
  */
 
 // La configuration globale est dans globals.h
@@ -16,21 +19,18 @@
 #include "init.h"
 
 #if UNIT_TESTS
-#include "unit_tests.h"
 #include <stdio.h>
+#include "unit_tests.h"
 #else
 #include "loop.h"
 #endif
 
+/// Algorithme principal
 void main(void) {
-    init();
-    while (1) {
-        ETAT = NOT_START;
+  init();
 #if UNIT_TESTS
-    if (unit_tests())
-        printf("Erreur, test inconnu! \r\n");
+  if (unit_tests()) printf("Erreur, test inconnu! \r\n");
 #else
-        loop();
+  loop();
 #endif
-    }
 }

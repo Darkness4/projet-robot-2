@@ -1,13 +1,17 @@
-/*
- * File:   init.h
- * Author: nguye
+/**
+ * @file init.h
+ * @author Marc NGUYEN
+ * @author Jonas LEFEVRE-DAUMAL
+ * @brief Initialisation du programme
+ * @version 1.0.0
+ * @date 2019-05-15
  *
- * Created on 6 mai 2019, 16:47
  */
 
 #ifndef INIT_H
 #define INIT_H
 
+/// Initialise le robot
 int init(void);
 
 #endif /* INIT_H */
